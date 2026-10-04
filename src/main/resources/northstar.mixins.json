@@ -114,7 +114,6 @@
     "accessor.OutlinerMixin",
     "accessor.OutlinerMixin$OutlineEntryMixin",
     "client.BlockRenderDispatcherMixin",
-    "client.EntityRendererMixin",
     "client.GuiGraphicsMixin",
     "client.LevelRendererMixin",
     "client.LivingEntityRendererMixin",

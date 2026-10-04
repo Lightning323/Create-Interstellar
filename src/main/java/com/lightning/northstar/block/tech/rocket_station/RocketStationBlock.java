@@ -88,7 +88,7 @@ public class RocketStationBlock extends HorizontalDirectionalBlock implements IB
 
                 RocketContraption contraption = be.assembleContraption();
                 if (contraption != null) {
-                    RocketStationMenu.open(serverPlayer, be.container, pos, contraption, be, null);
+                    RocketStationMenu.open(serverPlayer, be.container, pos, contraption, be);
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
             }

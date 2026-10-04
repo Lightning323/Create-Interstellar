@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -21,7 +22,8 @@ public abstract class ThrownTridentGravityMixin extends AbstractArrow {
     @Expression("this.inGroundTime > 4")
     @ModifyExpressionValue(method = "tick", at = @At("MIXINEXTRAS:EXPRESSION"))
     private boolean northstar$allowNoGravityPickup(boolean original) {
-        return original || (level().northstar$isZeroGravity() && getDeltaMovement().lengthSqr() < 0.01);
+        return original || (!NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity()
+                && getDeltaMovement().lengthSqr() < 0.01);
     }
 
 }

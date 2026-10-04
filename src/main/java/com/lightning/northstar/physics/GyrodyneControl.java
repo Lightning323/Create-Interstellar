@@ -145,6 +145,28 @@ public class GyrodyneControl {
         return respond(attitude, new Vector3d(), true, timeStep, gains, capacityNm);
     }
 
+    /** Tracks a pilot-commanded angular velocity expressed in world-space radians per second. */
+    public static Response trackAngularVelocity(Attitude attitude, Vector3dc desiredWorld,
+                                                double timeStep, Gains gains, double capacityNm) {
+        if (timeStep <= 0d || capacityNm <= 0d) {
+            return Response.IDLE;
+        }
+
+        Vector3d errorLocal = new Vector3d(desiredWorld)
+                .sub(attitude.angularVelocityWorld());
+        new Quaterniond(attitude.mountOrientation()).conjugate().transform(errorLocal);
+        Vector3d torqueLocal = errorLocal.mul(gains.damping());
+        double magnitude = torqueLocal.length();
+        if (magnitude > capacityNm) {
+            torqueLocal.mul(capacityNm / magnitude);
+        }
+
+        Vector3d torqueWorld = new Quaterniond(attitude.mountOrientation())
+                .transform(torqueLocal, new Vector3d());
+        return new Response(torqueWorld.mul(timeStep),
+                tiltXFor(torqueLocal, capacityNm), tiltZFor(torqueLocal, capacityNm));
+    }
+
     /**
      * Returns the vessel to a previously captured orientation and then holds it there.
      *

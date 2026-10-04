@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.planet.ZeroGravityUtils;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
@@ -28,7 +29,8 @@ public abstract class PlayerGravityMixin extends LivingEntity {
     )
     private double northstar$modifyDropVerticalVelocity1(double constant) {
         // make items spread evenly up and down when dying
-        return level().northstar$isZeroGravity() ? random.nextFloat() * 0.2 - 0.1 : constant;
+        return !NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity()
+                ? random.nextFloat() * 0.2 - 0.1 : constant;
     }
 
     @ModifyExpressionValue(
@@ -41,7 +43,7 @@ public abstract class PlayerGravityMixin extends LivingEntity {
     )
     private float northstar$modifyDropVerticalVelocity2(float constant) {
         // make items fly directly forward (without up bias) when dropping
-        return level().northstar$isZeroGravity() ? 0 : constant;
+        return !NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity() ? 0 : constant;
     }
 
     @WrapWithCondition(
@@ -52,7 +54,8 @@ public abstract class PlayerGravityMixin extends LivingEntity {
             )
     )
     private boolean northstar$applyCustomKnockback(LivingEntity instance, double strength, double x, double z) {
-        return ZeroGravityUtils.shouldApplyKnockback(this, instance, strength);
+        return NorthstarSable.isInsideSubLevel(this) || NorthstarSable.isInsideSubLevel(instance)
+                || ZeroGravityUtils.shouldApplyKnockback(this, instance, strength);
     }
 
     @WrapWithCondition(
@@ -63,7 +66,8 @@ public abstract class PlayerGravityMixin extends LivingEntity {
             )
     )
     private boolean northstar$applyCustomPush(Entity instance, double x, double y, double z) {
-        return ZeroGravityUtils.shouldApplyKnockback(this, instance, Vector3d.length(x, y, z));
+        return NorthstarSable.isInsideSubLevel(this) || NorthstarSable.isInsideSubLevel(instance)
+                || ZeroGravityUtils.shouldApplyKnockback(this, instance, Vector3d.length(x, y, z));
     }
 
     // Count the player as on the ground in zero-gravity dimensions since the player will spend most of its time
@@ -76,7 +80,7 @@ public abstract class PlayerGravityMixin extends LivingEntity {
             )
     )
     private boolean northstar$modifyDigSpeed(boolean onGround) {
-        return onGround || level().northstar$isZeroGravity();
+        return onGround || (!NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity());
     }
 
 }

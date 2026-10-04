@@ -3,11 +3,10 @@ package com.lightning.northstar.content;
 import com.lightning.northstar.Northstar;
 import com.lightning.northstar.block.tech.atmospheric_concentrator.AtmosphericConcentratorEditPacket;
 import com.lightning.northstar.block.tech.rocket_station.RocketStationEditPacket;
+import com.lightning.northstar.block.tech.rocket_controls.RocketControlPacket;
 import com.lightning.northstar.block.tech.telescope.TelescopePrintPacket;
 import com.lightning.northstar.block.tech.temperature_regulator.TemperatureRegulatorEditPacket;
 import com.lightning.northstar.contraption.ActorConfigPacket;
-import com.lightning.northstar.contraption.rocket.packet.RocketDestinationPacket;
-import com.lightning.northstar.contraption.rocket.packet.RocketSeatsPacket;
 import com.lightning.northstar.contraption.rocket.packet.RocketSyncPacket;
 import com.lightning.northstar.network.packet.ForceContraptionControlPacket;
 import com.lightning.northstar.network.packet.RelativeTeleportPacket;
@@ -28,16 +27,15 @@ public enum NorthstarPackets implements BasePacketPayload.PacketTypeProvider {
     UPDATE_SPACE_ATLAS(SpaceAtlasEditPacket.class, SpaceAtlasEditPacket.STREAM_CODEC),
     UPDATE_TEMPERATURE_REGULATOR(TemperatureRegulatorEditPacket.class, TemperatureRegulatorEditPacket.STREAM_CODEC),
     TELESCOPE_PRINT(TelescopePrintPacket.class, TelescopePrintPacket.STREAM_CODEC),
+    ROCKET_CONTROL(RocketControlPacket.class, RocketControlPacket.STREAM_CODEC),
 
     // server to client
     FORCE_CONTRAPTION_CONTROL(ForceContraptionControlPacket.class, ForceContraptionControlPacket.STREAM_CODEC),
-    ROCKET_DESTINATION(RocketDestinationPacket.class, RocketDestinationPacket.STREAM_CODEC),
-    ROCKET_SEATS(RocketSeatsPacket.class, RocketSeatsPacket.STREAM_CODEC),
     ROCKET_SYNC(RocketSyncPacket.class, RocketSyncPacket.STREAM_CODEC),
     ACTOR_CONFIG(ActorConfigPacket.class, ActorConfigPacket.STREAM_CODEC),
     RELATIVE_TELEPORT(RelativeTeleportPacket.class, RelativeTeleportPacket.STREAM_CODEC);
 
-    public static final int NETWORK_VERSION = 8;
+    public static final int NETWORK_VERSION = 9;
 
     private final CatnipPacketRegistry.PacketType<?> type;
 

@@ -1,6 +1,7 @@
 package com.lightning.northstar.mixin.gravity;
 
 import com.lightning.northstar.config.NorthstarConfigs;
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.planet.ZeroGravityUtils;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -35,6 +36,7 @@ public abstract class LivingEntityGravityMixin extends Entity {
             )
     )
     private double northstar$modifyGravity(double value) {
+        if (NorthstarSable.isInsideSubLevel(this)) return value;
         return level().northstar$isZeroGravity() ?
                 (jumping ?
                  -0.2f :
@@ -49,7 +51,8 @@ public abstract class LivingEntityGravityMixin extends Entity {
             at = @At("RETURN")
     )
     private float northstar$modifyJumpPower(float original) {
-        return level().northstar$isZeroGravity() ? original * NorthstarConfigs.server().zeroGravityJumpStrength.getF() : original;
+        return !NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity()
+                ? original * NorthstarConfigs.server().zeroGravityJumpStrength.getF() : original;
     }
 
     @ModifyReturnValue(
@@ -57,7 +60,7 @@ public abstract class LivingEntityGravityMixin extends Entity {
             at = @At("RETURN")
     )
     private boolean northstar$modifySuppressingSlidingDownLadder(boolean original) {
-        return original && !level().northstar$isZeroGravity();
+        return original && (NorthstarSable.isInsideSubLevel(this) || !level().northstar$isZeroGravity());
     }
 
     @WrapWithCondition(
@@ -68,7 +71,7 @@ public abstract class LivingEntityGravityMixin extends Entity {
             )
     )
     private boolean northstar$replaceZeroGravityKnockback(LivingEntity entity, double strength, double x, double z, @Local(argsOnly = true) DamageSource source) {
-        return ZeroGravityUtils.shouldApplyKnockback(source.getEntity(), this, strength);
+        return NorthstarSable.isInsideSubLevel(this) || ZeroGravityUtils.shouldApplyKnockback(source.getEntity(), this, strength);
     }
 
 }

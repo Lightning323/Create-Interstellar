@@ -2,8 +2,8 @@ package com.lightning.northstar.mixin.gravity;
 
 import com.lightning.northstar.accessor.NorthstarEntity;
 import com.lightning.northstar.config.NorthstarConfigs;
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.content.NorthstarTags.NorthstarEntityTags;
-import com.lightning.northstar.contraption.rocket.RocketContraptionEntity;
 import com.lightning.northstar.planet.data.PlanetDimension;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -32,9 +32,6 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
 
     @Shadow
     private Level level;
-    @Shadow
-    @Nullable
-    private Entity vehicle;
     @Shadow
     public boolean verticalCollisionBelow;
 
@@ -68,7 +65,9 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
             at = @At("RETURN")
     )
     private double northstar$modifyGravity(double original) {
-        return original * level.northstar$gravityScale();
+        return NorthstarSable.isInsideSubLevel((Entity) (Object) this)
+                ? original
+                : original * level.northstar$gravityScale();
     }
 
     @ModifyVariable(
@@ -83,6 +82,7 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
             argsOnly = true
     )
     private Vec3 northstar$modifyMovementVelocity(Vec3 value) {
+        if (NorthstarSable.isInsideSubLevel((Entity) (Object) this)) return value;
         if (verticalCollisionBelow != northstar$lastCollisionBelow) {
             northstar$lastCollisionBelow = verticalCollisionBelow;
 
@@ -104,7 +104,7 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
 
         if (!(level instanceof ServerLevel level) ||
             !NorthstarConfigs.server().allowDimensionTraversal.get() ||
-            vehicle instanceof RocketContraptionEntity ||
+            NorthstarSable.isInsideSubLevel(self) ||
             NorthstarEntityTags.IGNORE_WORLD_BOUNDS_TELEPORT.matches(self) ||
             self instanceof ServerPlayer sp && sp.connection == null) {
             return;
@@ -147,10 +147,11 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
             )
     )
     private boolean northstar$push(boolean noPhysics, @Local(argsOnly = true) Entity entity) {
-        if (noPhysics || !level.northstar$isZeroGravity()) {
+        Entity self = (Entity) (Object) this;
+        if (noPhysics || !level.northstar$isZeroGravity() ||
+                NorthstarSable.isInsideSubLevel(self) || NorthstarSable.isInsideSubLevel(entity)) {
             return noPhysics;
         }
-        Entity self = (Entity) (Object) this;
 
         double dx = entity.getX() - self.getX();
         double dy = entity.getY() - self.getY();

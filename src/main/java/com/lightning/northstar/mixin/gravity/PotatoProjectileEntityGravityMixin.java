@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.simibubi.create.content.equipment.potatoCannon.PotatoProjectileEntity;
 import net.minecraft.world.entity.EntityType;
@@ -23,7 +24,7 @@ public class PotatoProjectileEntityGravityMixin extends AbstractHurtingProjectil
             )
     )
     private double northstar$modifyGravity(double constant) {
-        return constant * level().northstar$gravityScale();
+        return NorthstarSable.isInsideSubLevel(this) ? constant : constant * level().northstar$gravityScale();
     }
 
 }

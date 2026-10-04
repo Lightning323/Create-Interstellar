@@ -1,14 +1,10 @@
 package com.lightning.northstar.content;
 
 import com.lightning.northstar.content.NorthstarTags.NorthstarEntityTags;
-import com.lightning.northstar.contraption.rocket.RocketContraptionEntity;
 import com.lightning.northstar.entity.*;
 import com.lightning.northstar.entity.projectiles.LunargradeSpit;
 import com.lightning.northstar.entity.projectiles.VenusScorpionSpit;
 import com.lightning.northstar.entity.variants.FrozenZombieEntity;
-import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
-import com.simibubi.create.content.contraptions.render.ContraptionEntityRenderer;
-import com.simibubi.create.content.contraptions.render.ContraptionVisual;
 import com.tterrag.registrate.util.entry.EntityEntry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -181,21 +177,6 @@ public class NorthstarEntityTypes {
             .<VenusScorpionSpit>entity("venus_scorpion_spit", VenusScorpionSpit::new, MobCategory.MISC)
             .properties(p -> p.sized(0.25f, 0.25f)
                     .clientTrackingRange(8))
-            .register();
-
-    // contraptions
-
-    public static final EntityEntry<RocketContraptionEntity> ROCKET_CONTRAPTION = REGISTRATE
-            .entity("rocket_contraption", RocketContraptionEntity::new, MobCategory.MISC)
-            .visual(() -> ContraptionVisual::new)
-            .lang("Rocket")
-            .properties(b -> b
-                    .setTrackingRange(200)
-                    .setUpdateInterval(1))
-            .properties(AbstractContraptionEntity::build)
-            .properties(EntityType.Builder::fireImmune)
-            .tag(NorthstarEntityTags.IGNORE_WORLD_BOUNDS_TELEPORT.tag)
-            .renderer(() -> ContraptionEntityRenderer::new)
             .register();
 
     public static void register() {

@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -46,7 +47,7 @@ public abstract class ExperienceOrbGravityMixin extends Entity {
             }
     )
     private double northstar$increaseFollowRange(double constant) {
-        if (level().northstar$isZeroGravity()) {
+        if (!NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity()) {
             // Increase the follow range in zero gravity as it can be very annoying to pick up experience orbs otherwise
             return constant > 16 ? 16 * 16 : 16;
         }

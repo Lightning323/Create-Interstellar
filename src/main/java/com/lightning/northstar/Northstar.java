@@ -76,7 +76,6 @@ public class Northstar {
         NorthstarArmorMaterials.register(eventBus);
         NorthstarBlockEntityTypes.register();
         NorthstarBlocks.register();
-        NorthstarContraptionTypes.register(eventBus);
         NorthstarCreativeModeTab.register(eventBus);
         NorthstarDataComponents.register(eventBus);
         NorthstarEnchantments.register(eventBus);
@@ -211,6 +210,7 @@ public class Northstar {
             if (levels.hasNext()) {
                 NorthstarLevel.SERVER_TRACKER.tick(levels.next(), 0);
             }
+
         }
     }
 

@@ -4,15 +4,12 @@ import com.lightning.northstar.accessor.NorthstarLevel;
 import com.lightning.northstar.content.NorthstarDataComponents;
 import com.lightning.northstar.content.NorthstarItems;
 import com.lightning.northstar.content.NorthstarMenuTypes;
-import com.lightning.northstar.contraption.rocket.LaunchStatus;
 import com.lightning.northstar.contraption.rocket.RocketContraption;
-import com.lightning.northstar.contraption.rocket.RocketContraptionEntity;
 import com.lightning.northstar.contraption.rocket.RocketDestination;
 import com.lightning.northstar.item.atlas.SpaceAtlasContent;
 import com.lightning.northstar.planet.Planet;
 import com.lightning.northstar.planet.PlanetTracker;
 import com.lightning.northstar.planet.data.PlanetDimension;
-import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.foundation.gui.menu.MenuBase;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -32,10 +29,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.apache.commons.lang3.tuple.MutablePair;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,22 +42,17 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class RocketStationMenu extends MenuBase<RocketStationHolder> {
 
-    @Contract("_, _, _, _, null, null -> fail")
     public static void open(ServerPlayer player, SimpleContainer container, BlockPos pos, RocketContraption contraption,
-                            @Nullable RocketStationBlockEntity be, @Nullable RocketContraptionEntity entity) {
-        if (be == null && entity == null) {
-            throw new IllegalArgumentException("Either a rocket station or rocket contraption is required");
-        }
+                            RocketStationBlockEntity be) {
         MenuProvider provider = new SimpleMenuProvider((id, inventory, p) -> new RocketStationMenu(
                 NorthstarMenuTypes.ROCKET_STATION.get(),
                 id,
                 inventory,
-                new RocketStationHolder(container, pos, contraption, be, entity)
+                new RocketStationHolder(container, pos, contraption, be)
         ), Component.translatable("block.northstar.rocket_station"));
 
         player.openMenu(provider, buffer -> {
             buffer.writeBlockPos(pos);
-            buffer.writeInt(entity == null ? -1 : entity.getId());
         });
     }
 
@@ -85,27 +75,14 @@ public class RocketStationMenu extends MenuBase<RocketStationHolder> {
         ClientLevel level = Minecraft.getInstance().level;
 
         BlockPos pos = extraData.readBlockPos();
-        int entityId = extraData.readInt();
-
-        if (entityId == -1) {
-            if (!(level.getBlockEntity(pos) instanceof RocketStationBlockEntity station)) {
-                return null;
-            }
-            RocketContraption contraption = station.assembleContraption();
-            if (contraption == null) {
-                return null;
-            }
-            return new RocketStationHolder(station.container, pos, contraption, station, null);
-        }
-
-        if (!(level.getEntity(entityId) instanceof RocketContraptionEntity rocket)) {
+        if (!(level.getBlockEntity(pos) instanceof RocketStationBlockEntity station)) {
             return null;
         }
-        MutablePair<StructureTemplate.StructureBlockInfo, MovementContext> pair = rocket.getContraption().getActorAt(pos);
-        if (pair == null) {
+        RocketContraption contraption = station.assembleContraption();
+        if (contraption == null) {
             return null;
         }
-        return new RocketStationHolder(RocketStationActor.get(pair.right).container, pos, rocket.getContraption(), null, rocket);
+        return new RocketStationHolder(station.container, pos, contraption, station);
     }
 
     @Override
@@ -115,18 +92,9 @@ public class RocketStationMenu extends MenuBase<RocketStationHolder> {
     @Override
     protected void addSlots() {
         addSlot(new Slot(contentHolder.container(), 0, 8, 8) {
-            private boolean mayInteract() {
-                return contentHolder.entity() == null || contentHolder.entity().getStatus() == LaunchStatus.WAITING;
-            }
-
-            @Override
-            public boolean mayPickup(Player player) {
-                return mayInteract() && super.mayPickup(player);
-            }
-
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return mayInteract() && (NorthstarItems.SPACE_ATLAS.isIn(stack) || NorthstarItems.RETURN_TICKET.isIn(stack)) && super.mayPlace(stack);
+                return (NorthstarItems.SPACE_ATLAS.isIn(stack) || NorthstarItems.RETURN_TICKET.isIn(stack)) && super.mayPlace(stack);
             }
 
             @Override
@@ -134,14 +102,8 @@ public class RocketStationMenu extends MenuBase<RocketStationHolder> {
                 super.setChanged();
 
                 PlanetTracker planets = isClient ? NorthstarLevel.CLIENT_TRACKER : NorthstarLevel.SERVER_TRACKER;
-                if (contentHolder.be() != null) {
-                    if (!validateDestination(planets, container.getItem(0), contentHolder.be().destination)) {
-                        contentHolder.be().destination = null;
-                    }
-                } else {
-                    if (!validateDestination(planets, container.getItem(0), contentHolder.contraption().destination)) {
-                        contentHolder.contraption().destination = null;
-                    }
+                if (!validateDestination(planets, container.getItem(0), contentHolder.be().destination)) {
+                    contentHolder.be().destination = null;
                 }
             }
         });

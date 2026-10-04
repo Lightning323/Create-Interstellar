@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.config.NorthstarConfigs;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -31,7 +32,8 @@ public abstract class ProjectileGravityMixin extends Entity {
         // when slow enough, fake hitting something to prevent it from flying forever, this causes potions and
         //  experience bottles to explode, tridents to return etc...
         Vec3 delta = getDeltaMovement();
-        if (level().northstar$isZeroGravity() && delta.lengthSqr() < 0.01 && NorthstarConfigs.server().removeStalledProjectiles.get()) {
+        if (!NorthstarSable.isInsideSubLevel(this) && level().northstar$isZeroGravity()
+                && delta.lengthSqr() < 0.01 && NorthstarConfigs.server().removeStalledProjectiles.get()) {
             onHit(new BlockHitResult(position(), Direction.getNearest(delta.x, delta.y, delta.z), blockPosition(), true));
         }
     }

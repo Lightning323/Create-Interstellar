@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
@@ -24,7 +25,7 @@ public class ServerGamePacketListenerImplGravityMixin {
             )
     )
     private boolean northstar$modifyIsFlying(boolean original) {
-        return original || player.level().northstar$isZeroGravity();
+        return original || (!NorthstarSable.isInsideSubLevel(player) && player.level().northstar$isZeroGravity());
     }
 
 }

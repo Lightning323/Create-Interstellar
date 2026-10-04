@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -29,7 +30,7 @@ public abstract class AquaticEntityGravityMixin extends Entity {
             )
     )
     private double northstar$modifyGravity(double constant) {
-        return constant * level().northstar$gravityScale();
+        return NorthstarSable.isInsideSubLevel(this) ? constant : constant * level().northstar$gravityScale();
     }
 
 }

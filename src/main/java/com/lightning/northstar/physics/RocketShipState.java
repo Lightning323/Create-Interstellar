@@ -82,6 +82,11 @@ public class RocketShipState {
      */
     public void setThrottle(float throttle) {
         this.throttle = Math.max(0f, Math.min(1f, throttle));
+        if (this.throttle > 0f) {
+            phase = LaunchStatus.ASCENDING;
+        } else if (phase == LaunchStatus.ASCENDING) {
+            phase = LaunchStatus.WAITING;
+        }
     }
 
     public float pitch() {

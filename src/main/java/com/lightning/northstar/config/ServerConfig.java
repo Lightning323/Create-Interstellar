@@ -23,17 +23,12 @@ public class ServerConfig extends ConfigBase {
     public final ConfigFloat targetingComputerEfficiency = f(0.4f, 0f, 1f, "targetingComputerEfficiency", "The total fuel efficiency applied for the maximum amount of targeting computers");
     public final ConfigInt targetingComputersNeeded = i(48, 0, "targetingComputersNeeded", "The amount of targeting computers required to reach maximum efficiency");
     public final ConfigInt launchCountdownRadius = i(20, 0, "launchCountdownRadius", "From how far away should the launch countdown messages/sound be announced to players");
-    public final ConfigFloat thrusterPower = f(500, 1, "thrusterPower", "The engine's force in Newtons (kg/m/s^2) assuming rocket weight is in kg");
-    public final ConfigFloat propellantSpecificImpulse = f(1200, 1, "propellantSpecificImpulse", "Propellant energy per newton of thrust, in mB per Newton. Higher values make thrusters more fuel efficient.");
-    public final ConfigFloat landingMaxSafeSpeed = f(5, 0, "landingMaxSafeSpeed", "The maximum safe speed in blocks/second the rocket can move at before exploding on landing");
+    public final ConfigFloat thrusterTier1Force = f(500, 1, "thrusterTier1Force", "Tier 1 rocket thrust in newtons");
+    public final ConfigFloat thrusterTier2Force = f(1000, 1, "thrusterTier2Force", "Tier 2 rocket thrust in newtons");
+    public final ConfigFloat thrusterTier3Force = f(2000, 1, "thrusterTier3Force", "Tier 3 rocket thrust in newtons");
+    public final ConfigFloat propellantSpecificImpulse = f(1200, 1, "propellantSpecificImpulse", "Thrust impulse per millibucket of propellant, in newton-seconds per mB");
     public final ConfigFloat rocketExplosionFraction = f(0.005f, 0, 1, "explosionFraction", "The fraction of blocks to explode when a rocket crash lands. Set to zero to disable.");
     public final ConfigInt rocketExplosionSize = i(8, 1, "explosionSize", "The size of individual explosions when a rocket crash lands.");
-
-    public final ConfigGroup rocketFuel = group(2, "fuel", "Fuel properties for rockets");
-
-    public final ConfigFloat takeoffFuelScale = f(30, 0, "takeoffFuelScale");
-    public final ConfigFloat landingFuelScale = f(10, 0, "landingFuelScale");
-    public final ConfigFloat travelFuelScale = f(10, 0, "travelFuelScale");
 
     public final ConfigGroup attitudeControl = group(3, "attitudeControl", "Reaction wheel tuning, for gyrodyne blocks inside rockets");
 

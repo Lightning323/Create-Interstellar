@@ -3,7 +3,9 @@ package com.lightning.northstar;
 import com.lightning.northstar.accessor.NorthstarLevel;
 import com.lightning.northstar.api.client.NorthstarDimensionEffectsExtension;
 import com.lightning.northstar.client.NorthstarAtlas;
+import com.lightning.northstar.block.tech.rocket_controls.RocketFlightControls;
 import com.lightning.northstar.client.renderer.RemainingOxygenOverlay;
+import com.lightning.northstar.client.renderer.RocketFlightOverlay;
 import com.lightning.northstar.client.renderer.armor.SpaceSuitFirstPersonRenderer;
 import com.lightning.northstar.client.renderer.armor.SpaceSuitLayerRenderer;
 import com.lightning.northstar.client.renderer.effect.MarsEffects;
@@ -16,12 +18,9 @@ import com.lightning.northstar.content.NorthstarItems;
 import com.lightning.northstar.content.NorthstarTags.NorthstarItemTags;
 import com.lightning.northstar.content.NorthstarTextures;
 import com.lightning.northstar.content.world.NorthstarDimensionEffects;
-import com.lightning.northstar.contraption.rocket.LaunchStatus;
-import com.lightning.northstar.contraption.rocket.RocketContraptionEntity;
 import com.lightning.northstar.particle.NorthstarParticles;
 import com.lightning.northstar.ponder.NorthstarPonderPlugin;
 import com.lightning.northstar.util.NorthstarLang;
-import com.simibubi.create.content.trains.CameraDistanceModifier;
 import net.createmod.catnip.lang.LangNumberFormat;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.ChatFormatting;
@@ -43,7 +42,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
-import net.neoforged.neoforge.event.entity.EntityMountEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(modid = Northstar.MOD_ID, value = Dist.CLIENT)
@@ -54,6 +52,7 @@ public class NorthstarClient {
 
     public static void clientInit(IEventBus eventBus) {
         eventBus.addListener(NorthstarParticles::registerFactories);
+        RocketFlightControls.register(eventBus);
     }
 
     @SubscribeEvent
@@ -102,6 +101,7 @@ public class NorthstarClient {
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiLayers.AIR_LEVEL, Northstar.asResource("remaining_oxygen"), RemainingOxygenOverlay.INSTANCE);
+        event.registerAbove(VanillaGuiLayers.AIR_LEVEL, Northstar.asResource("rocket_flight"), RocketFlightOverlay.INSTANCE);
     }
 
     @SubscribeEvent
@@ -174,29 +174,6 @@ public class NorthstarClient {
             event.setNearPlaneDistance(event.getNearPlaneDistance() + extent);
             event.setFarPlaneDistance(event.getFarPlaneDistance() + extent);
             event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onMountEntity(EntityMountEvent event) {
-        LocalPlayer player = Minecraft.getInstance().player;
-        if (player != null &&
-            player.equals(event.getEntityMounting()) &&
-            event.isDismounting() &&
-            event.getEntityBeingMounted() instanceof RocketContraptionEntity rocket &&
-            rocket.getStatus() != LaunchStatus.WAITING) {
-            event.setCanceled(true);
-            return;
-        }
-
-        if (player != null &&
-            player.equals(event.getEntityMounting()) &&
-            event.getEntityBeingMounted() instanceof RocketContraptionEntity) {
-            if (event.isDismounting()) {
-                CameraDistanceModifier.reset();
-            } else {
-                CameraDistanceModifier.zoomOut(6);
-            }
         }
     }
 

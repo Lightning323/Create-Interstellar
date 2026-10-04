@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +23,7 @@ public abstract class EntityFallDamageGravityMixin extends Entity {
             argsOnly = true
     )
     private float northstar$modifyFallDamageGravity(float fallDistance) {
-        return fallDistance * level().northstar$gravityScale();
+        return NorthstarSable.isInsideSubLevel(this) ? fallDistance : fallDistance * level().northstar$gravityScale();
     }
 
 }

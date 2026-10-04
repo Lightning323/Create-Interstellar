@@ -21,13 +21,8 @@ import com.lightning.northstar.block.tech.oxygen_sealer.OxygenSealerBlock;
 import com.lightning.northstar.block.tech.oxygen_sealer.OxygenSealerMovementBehaviour;
 import com.lightning.northstar.block.tech.oxygen_sealer.OxygenSealerMovingInteractionBehaviour;
 import com.lightning.northstar.block.tech.rocket_controls.RocketControlsBlock;
-import com.lightning.northstar.block.tech.rocket_controls.RocketControlsInteractionBehaviour;
-import com.lightning.northstar.block.tech.rocket_controls.RocketControlsMovementBehaviour;
 import com.lightning.northstar.block.tech.rocket_station.RocketStationBlock;
-import com.lightning.northstar.block.tech.rocket_station.RocketStationBlockMovementBehaviour;
-import com.lightning.northstar.block.tech.rocket_station.RocketStationBlockMovingInteraction;
 import com.lightning.northstar.block.tech.rocket_thruster.RocketThrusterBlock;
-import com.lightning.northstar.block.tech.rocket_thruster.RocketThrusterMovementBehaviour;
 import com.lightning.northstar.block.tech.rocket_waypoint.RocketWaypointBlock;
 import com.lightning.northstar.block.tech.solar_panel.SolarPanelBlock;
 import com.lightning.northstar.block.tech.solar_panel.SolarPanelBlockEntity;
@@ -4021,8 +4016,6 @@ public class NorthstarBlocks {
             .tag(NorthstarBlockTags.AIR_PASSES_THROUGH.tag)
             .blockstate(NorthstarDataGenModels.manualModel())
             .simpleItem()
-            .onRegister(MovementBehaviour.movementBehaviour(new RocketStationBlockMovementBehaviour()))
-            .onRegister(MovingInteractionBehaviour.interactionBehaviour(new RocketStationBlockMovingInteraction()))
             .register();
 
     public static final BlockEntry<RocketControlsBlock> ROCKET_CONTROLS = REGISTRATE
@@ -4034,8 +4027,6 @@ public class NorthstarBlocks {
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .tag(NorthstarBlockTags.ROCKET_ALWAYS_ACTIVE_ACTORS.tag)
             .blockstate(NorthstarDataGenModels.manualModel())
-            .onRegister(MovementBehaviour.movementBehaviour(new RocketControlsMovementBehaviour()))
-            .onRegister(MovingInteractionBehaviour.interactionBehaviour(new RocketControlsInteractionBehaviour()))
             .item()
             .transform(customItemModel())
             .register();
@@ -4076,7 +4067,6 @@ public class NorthstarBlocks {
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .tag(NorthstarBlockTags.ROCKET_ALWAYS_ACTIVE_ACTORS.tag)
             .blockstate(NorthstarDataGenModels.manualModel())
-            .onRegister(MovementBehaviour.movementBehaviour(new RocketThrusterMovementBehaviour()))
             .item()
             .model((c, p) -> p.withExistingParent(p.name(c), p.modLoc("block/rocket_thruster/single")))
             .build()

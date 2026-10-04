@@ -1,5 +1,6 @@
 package com.lightning.northstar.mixin.gravity;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.content.NorthstarTags.NorthstarEntityTags;
 import com.lightning.northstar.entity.ai.ZeroGravityMoveControl;
 import com.lightning.northstar.entity.ai.ZeroGravityNavigation;
@@ -37,7 +38,8 @@ public abstract class MobGravityMixin extends LivingEntity {
     public void northstar$onResourceReload() {
         super.northstar$onResourceReload();
 
-        boolean shouldUseZeroGravity = level().northstar$isZeroGravity() && !NorthstarEntityTags.IGNORE_ZERO_GRAVITY_AI.matches(this);
+        boolean shouldUseZeroGravity = !NorthstarSable.isInsideSubLevel(this)
+                && level().northstar$isZeroGravity() && !NorthstarEntityTags.IGNORE_ZERO_GRAVITY_AI.matches(this);
         if (shouldUseZeroGravity == navigation instanceof ZeroGravityNavigation) {
             return;
         }
@@ -65,7 +67,8 @@ public abstract class MobGravityMixin extends LivingEntity {
             )
     )
     private PathNavigation northstar$wrapNavigation(PathNavigation original) {
-        if (!level().northstar$isZeroGravity() || NorthstarEntityTags.IGNORE_ZERO_GRAVITY_AI.matches(this)) {
+        if (NorthstarSable.isInsideSubLevel(this) || !level().northstar$isZeroGravity()
+                || NorthstarEntityTags.IGNORE_ZERO_GRAVITY_AI.matches(this)) {
             return original;
         }
 
@@ -82,7 +85,8 @@ public abstract class MobGravityMixin extends LivingEntity {
             )
     )
     private boolean northstar$replaceZeroGravityKnockback(LivingEntity entity, double strength, double x, double z) {
-        return ZeroGravityUtils.shouldApplyKnockback(this, entity, strength);
+        return NorthstarSable.isInsideSubLevel(this) || NorthstarSable.isInsideSubLevel(entity)
+                || ZeroGravityUtils.shouldApplyKnockback(this, entity, strength);
     }
 
 }

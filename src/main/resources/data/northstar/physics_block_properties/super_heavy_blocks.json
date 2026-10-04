@@ -1,0 +1,7 @@
+{
+  "selector": "#northstar:super_heavy_blocks",
+  "priority": 1200,
+  "properties": {
+    "sable:mass": 10.0
+  }
+}

@@ -7,6 +7,7 @@ import dev.ryanhcode.sable.companion.SubLevelAccess;
 import dev.ryanhcode.sable.sublevel.ServerSubLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.Entity;
 import org.joml.Quaterniond;
 import org.joml.Vector3d;
 
@@ -63,6 +64,16 @@ public final class NorthstarSable {
      */
     public static RigidBodyHandle handleFor(ServerSubLevel subLevel) {
         return HANDLES.computeIfAbsent(subLevel, RigidBodyHandle::of);
+    }
+
+    /** Planetary gravity and boundary hooks yield while Sable owns an entity's motion. */
+    public static boolean isInsideSubLevel(Entity entity) {
+        return containing(entity.level(), entity.blockPosition()) != null;
+    }
+
+    @Nullable
+    public static SubLevelAccess containing(Level level, BlockPos pos) {
+        return SableCompanion.INSTANCE.getContaining(level, pos);
     }
 
     /**

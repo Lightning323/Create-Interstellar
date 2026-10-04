@@ -1,6 +1,9 @@
 package com.lightning.northstar.physics;
 
 import com.lightning.northstar.config.NorthstarConfigs;
+import dev.ryanhcode.sable.api.physics.force.ForceTotal;
+import dev.ryanhcode.sable.api.physics.handle.RigidBodyHandle;
+import dev.ryanhcode.sable.api.physics.mass.MassData;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaterniond;
@@ -14,8 +17,7 @@ import java.util.List;
  * Resolves the net thrust produced by a vessel's thrusters and the propellant
  * that thrust costs.
  *
- * <p>This class holds no world state and no Sable types, so the force and fuel
- * model can be exercised without a running level or a physics pipeline. The
+     * <p>The force and fuel model can be exercised without a running level or a physics pipeline. The
  * caller hands the resulting impulse to Sable, either per thruster via
  * {@code RigidBodyHandle.applyImpulseAtPoint} (which resolves the centre of mass
  * and rotation itself) or for a whole vessel at once via
@@ -98,7 +100,7 @@ public class RocketPropulsion {
         public static final Burn EMPTY = new Burn(new Vector3d(), new Vector3d(), 0f, 0d);
 
         public boolean isFiring() {
-            return linearImpulse.length() > 1e-9d;
+            return linearImpulse.lengthSquared() > 1e-18d || angularImpulse.lengthSquared() > 1e-18d;
         }
 
         public double thrustNewtons(double deltaTime) {
@@ -126,7 +128,7 @@ public class RocketPropulsion {
                                Vector3dc centreOfMassLocal, double deltaTime,
                                double massKg, double gravityScale) {
         return resolve(thrusters, vesselQuaternion, centreOfMassLocal, deltaTime, massKg, gravityScale,
-                NorthstarConfigs.server().thrusterPower.getF(),
+                NorthstarConfigs.server().thrusterTier1Force.getF(),
                 NorthstarConfigs.server().propellantSpecificImpulse.getF());
     }
 
@@ -151,6 +153,7 @@ public class RocketPropulsion {
         Vector3d leverArm = new Vector3d();
 
         double totalThrust = 0d;
+        double totalImpulse = 0d;
 
         for (Thruster thruster : thrusters) {
             if (!thruster.isFiring()) {
@@ -165,6 +168,7 @@ public class RocketPropulsion {
             totalThrust += thrustLocal.length();
 
             Vector3d impulse = new Vector3d(thrustLocal).mul(deltaTime);
+            totalImpulse += impulse.length();
             linearImpulse.add(impulse);
 
             pointLocal.set(thruster.mountPoint()).sub(centreOfMassLocal);
@@ -175,10 +179,23 @@ public class RocketPropulsion {
             angularImpulse.add(leverArm);
         }
 
-        float propellantMb = propellantFor(impulseMagnitude(linearImpulse), specificImpulse);
+        float propellantMb = propellantFor(totalImpulse, specificImpulse);
         double thrustToWeight = thrustToWeight(totalThrust, massKg, gravityScale);
 
         return new Burn(linearImpulse, angularImpulse, propellantMb, thrustToWeight);
+    }
+
+    /** Sable-backed overload that remains independent of any running level. */
+    public static Burn resolve(RigidBodyHandle body, MassData massData, List<Thruster> thrusters,
+                               Quaterniond vesselQuaternion, double deltaTime, double gravityScale,
+                               double forcePerThruster, double specificImpulse, ForceTotal forceTotal) {
+        if (body == null || !body.isValid() || massData == null || massData.getMass() <= 0d || deltaTime <= 0d) {
+            return Burn.EMPTY;
+        }
+        Burn burn = resolve(thrusters, vesselQuaternion, massData.getCenterOfMass(), deltaTime,
+                massData.getMass(), gravityScale, forcePerThruster, specificImpulse);
+        forceTotal.applyLinearAndAngularImpulse(burn.linearImpulse(), burn.angularImpulse());
+        return burn;
     }
 
     /**
@@ -186,7 +203,7 @@ public class RocketPropulsion {
      * the physics step length to get an impulse.
      */
     public static Vector3d forceFor(Thruster thruster, Quaterniond vesselQuaternion) {
-        return forceFor(thruster, vesselQuaternion, NorthstarConfigs.server().thrusterPower.getF());
+        return forceFor(thruster, vesselQuaternion, NorthstarConfigs.server().thrusterTier1Force.getF());
     }
 
     /**
@@ -258,7 +275,7 @@ public class RocketPropulsion {
      */
     public static int thrustersRequiredToLift(double massKg, double gravityScale) {
         return thrustersRequiredToLift(massKg, gravityScale,
-                NorthstarConfigs.server().thrusterPower.getF());
+                NorthstarConfigs.server().thrusterTier1Force.getF());
     }
 
     /**

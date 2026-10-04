@@ -3,6 +3,8 @@ package com.lightning.northstar.block.tech.gyrodyne;
 import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.config.NorthstarConfigs;
 import com.lightning.northstar.physics.GyrodyneControl;
+import com.lightning.northstar.physics.RocketShipState;
+import com.lightning.northstar.physics.RocketSublevelState;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -172,7 +174,24 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
             // call reaching into the sublevel again.
             NorthstarSable.VesselFrame frame = NorthstarSable.frame(subLevel, body);
             if (frame.isUsable()) {
-                response = solve(frame, mode, deltaTime);
+                RocketShipState flightState = RocketSublevelState.get(subLevel);
+                if (flightState.pitch() != 0f || flightState.yaw() != 0f || flightState.roll() != 0f) {
+                    Vector3d desiredRate = new Vector3d(flightState.pitch(), flightState.yaw(), flightState.roll())
+                            .mul(RocketShipState.SLEW_RATE);
+                    frame.orientation().transform(desiredRate);
+                    GyrodyneControl.Attitude attitude = new GyrodyneControl.Attitude(
+                            frame.orientation(), GyrodyneControl.mountOrientation(getFacing()),
+                            frame.body().getAngularVelocity());
+                    GyrodyneControl.Gains gains = new GyrodyneControl.Gains(
+                            NorthstarConfigs.server().gyrodyneProportionalGain.get(),
+                            NorthstarConfigs.server().gyrodyneDampingGain.get());
+                    double capacity = GyrodyneControl.torqueCapacity(
+                            NorthstarConfigs.server().gyrodyneTorque.get(), frame.massKg());
+                    response = GyrodyneControl.trackAngularVelocity(attitude, desiredRate,
+                            deltaTime, gains, capacity);
+                } else {
+                    response = solve(frame, mode, deltaTime);
+                }
                 if (response.isFiring()) {
                     frame.body().applyAngularImpulse(response.angularImpulseWorld());
                 }

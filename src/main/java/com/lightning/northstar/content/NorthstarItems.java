@@ -57,6 +57,20 @@ public class NorthstarItems {
             .tag(NorthstarItemTags.C_INGOTS_TITANIUM.tag)
             .register();
 
+    public static final ItemEntry<Item> TITANIUM_ALLOY_INGOT = REGISTRATE
+            .item("titanium_alloy_ingot", Item::new)
+            .lang("Titanium Alloy Ingot")
+            .tag(Tags.Items.INGOTS)
+            .tag(NorthstarItemTags.C_INGOTS_TITANIUM_ALLOY.tag)
+            .register();
+
+    public static final ItemEntry<Item> CRUSHED_RAW_TITANIUM = REGISTRATE
+            .item("crushed_raw_titanium", Item::new)
+            .lang("Crushed Raw Titanium")
+            .tag(NorthstarItemTags.C_CRUSHED_RAW_MATERIALS.tag)
+            .tag(AllItemTags.CRUSHED_RAW_MATERIALS.tag)
+            .register();
+
     public static final ItemEntry<Item> TITANIUM_SHEET = REGISTRATE
             .item("titanium_sheet", Item::new)
             .tag(NorthstarItemTags.C_SHEETS.tag)

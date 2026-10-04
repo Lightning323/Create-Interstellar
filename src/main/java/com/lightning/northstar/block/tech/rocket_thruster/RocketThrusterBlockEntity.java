@@ -1,14 +1,21 @@
 package com.lightning.northstar.block.tech.rocket_thruster;
 
-import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.contraption.FuelType;
 import com.lightning.northstar.particle.NorthstarParticles;
 import com.lightning.northstar.physics.RocketPropulsion;
+import com.lightning.northstar.physics.RocketFuelStore;
+import com.lightning.northstar.physics.RocketSublevelState;
+import com.lightning.northstar.contraption.rocket.packet.RocketSyncPacket;
+import com.lightning.northstar.config.NorthstarConfigs;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import dev.ryanhcode.sable.api.block.BlockEntitySubLevelActor;
+import dev.ryanhcode.sable.api.physics.force.ForceGroups;
+import dev.ryanhcode.sable.api.physics.force.ForceTotal;
 import dev.ryanhcode.sable.api.physics.handle.RigidBodyHandle;
+import dev.ryanhcode.sable.companion.SableCompanion;
+import dev.ryanhcode.sable.companion.SubLevelAccess;
 import dev.ryanhcode.sable.sublevel.ServerSubLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,6 +27,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.joml.Vector3d;
+import org.joml.Quaterniond;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -48,9 +56,13 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
      * this, the physics tick reads it.
      */
     private float throttle;
+    private float fractionalPropellantMb;
 
-    private final SmartFluidTank fuel = new SmartFluidTank(TANK_CAPACITY, stack -> {
-    });
+    private final SmartFluidTank fuel = new SmartFluidTank(TANK_CAPACITY, stack -> setChanged());
+
+    {
+        fuel.setValidator(stack -> FuelType.getFuelType(stack.getFluid()) != null);
+    }
 
     public RocketThrusterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -85,6 +97,10 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
         return getBlockState().getValue(RocketThrusterBlock.FACING);
     }
 
+    public int getTier() {
+        return getBlockState().getValue(RocketThrusterBlock.TIER);
+    }
+
     /**
      * Propellant energy available to this thruster, in GJ, using the specific
      * energy of whichever fuel is loaded.
@@ -103,33 +119,55 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
 
     @Override
     public void sable$physicsTick(ServerSubLevel subLevel, RigidBodyHandle body, double deltaTime) {
+        throttle = RocketSublevelState.get(subLevel).throttle();
         if (!isFiring() || body == null || !body.isValid() || deltaTime <= 0d) {
             return;
         }
 
-        NorthstarSable.VesselFrame frame = NorthstarSable.frame(subLevel, body);
-        if (!frame.hasMass()) {
+        if (fuel.getFluid().isEmpty()) {
+            RocketSublevelState.get(subLevel).setThrottle(0f);
+            RocketSublevelState.save(subLevel);
+            fractionalPropellantMb = 0f;
+            return;
+        }
+
+        if (subLevel.getMassTracker() == null || subLevel.getMassTracker().getMass() <= 0d) {
             // Without a mass tracker there is nothing to push against, so burning
             // propellant would be theft. Cut the throttle so the failure is visible.
-            throttle = 0f;
+            RocketSublevelState.get(subLevel).setThrottle(0f);
+            RocketSublevelState.save(subLevel);
             return;
         }
 
-        Vector3d thrust = RocketPropulsion.forceFor(currentThruster(), frame.orientation());
-        double impulseMagnitude = thrust.length() * deltaTime;
-        if (impulseMagnitude <= 0d) {
+        ForceTotal total = new ForceTotal();
+        RocketPropulsion.Burn burn = RocketPropulsion.resolve(
+                body, subLevel.getMassTracker(), List.of(currentThruster()),
+                new org.joml.Quaterniond(), deltaTime, 0d, forceForTier(),
+                NorthstarConfigs.server().propellantSpecificImpulse.getF(), total);
+        if (!burn.isFiring()) return;
+
+        float requestedMb = fractionalPropellantMb + burn.propellantMb();
+        int wholeMb = (int) requestedMb;
+        if (!tryConsume(wholeMb, subLevel)) {
+            RocketSublevelState.get(subLevel).setThrottle(0f);
+            RocketSublevelState.save(subLevel);
+            fractionalPropellantMb = 0f;
             return;
         }
+        fractionalPropellantMb = requestedMb - wholeMb;
 
-        // Refuse to burn without propellant, and cut the throttle so the
-        // failure is visible to the player rather than silently ignored.
-        if (!tryConsume(RocketPropulsion.propellantFor(impulseMagnitude))) {
-            throttle = 0f;
-            return;
-        }
+        var group = subLevel.getOrCreateQueuedForceGroup(ForceGroups.PROPULSION.get());
+        group.getForceTotal().applyForceTotal(total);
+        group.recordPointForce(new Vector3d(nozzlePosition().x, nozzlePosition().y, nozzlePosition().z),
+                new Vector3d(burn.linearImpulse()));
+    }
 
-        Vector3d impulse = new Vector3d(thrust).mul(deltaTime);
-        frame.body().applyImpulseAtPoint(nozzlePosition(), new Vec3(impulse.x, impulse.y, impulse.z));
+    private double forceForTier() {
+        return switch (getTier()) {
+            case 2 -> NorthstarConfigs.server().thrusterTier2Force.getF();
+            case 3 -> NorthstarConfigs.server().thrusterTier3Force.getF();
+            default -> NorthstarConfigs.server().thrusterTier1Force.getF();
+        };
     }
 
     /**
@@ -139,7 +177,7 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
     private RocketPropulsion.Thruster currentThruster() {
         return new RocketPropulsion.Thruster(
                 exhaustAxis(),
-                new Vector3d(nozzleOffset().x, nozzleOffset().y, nozzleOffset().z),
+                new Vector3d(nozzlePosition().x, nozzlePosition().y, nozzlePosition().z),
                 throttle,
                 0f);
     }
@@ -173,39 +211,44 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
      *
      * @param propellantMb propellant required, mB
      */
-    private boolean tryConsume(float propellantMb) {
-        if (propellantMb <= 0f) {
+    private boolean tryConsume(int propellantMb, ServerSubLevel subLevel) {
+        if (propellantMb <= 0) {
             return true;
         }
 
         FluidStack stack = fuel.getFluid();
-        if (stack.isEmpty()) {
-            return false;
-        }
-        FuelType fuelType = FuelType.getFuelType(stack.getFluid());
-        if (fuelType == null || fuelType.gjPerMb() <= 0f) {
-            return false;
+        FuelType fuelType = stack.isEmpty() ? null : FuelType.getFuelType(stack.getFluid());
+        if (fuelType != null && fuelType.gjPerMb() > 0f && stack.getAmount() >= propellantMb) {
+            return fuel.drain(propellantMb, IFluidHandler.FluidAction.EXECUTE).getAmount() >= propellantMb;
         }
 
-        // propellantMb is already a volume of fluid, so it must not be run back
-        // through RocketPropulsion.propellantFor, which expects an impulse. Round up
-        // to whole mB because a tank can only drain in integers.
-        int take = Math.min(stack.getAmount(), (int) Math.ceil(propellantMb));
-        if (take <= 0) {
-            return false;
-        }
-        return fuel.drain(take, IFluidHandler.FluidAction.EXECUTE).getAmount() >= take;
+        // Fluid tank blocks are part of the assembled vessel too. Drain their
+        // controller inventories so installed Create tanks remain the main fuel
+        // store, while retaining the thruster's own tank as a compact fallback.
+        return RocketFuelStore.consume(subLevel, propellantMb);
     }
 
     @Override
     public void tick() {
         super.tick();
+        if (level != null && level.isClientSide && clientIsFiring()) {
+            spawnPlume();
+        }
+    }
+
+    private boolean clientIsFiring() {
+        if (level == null || !level.isClientSide) return false;
+        SubLevelAccess subLevel = SableCompanion.INSTANCE.getContaining(level, getBlockPos());
+        if (subLevel == null) return false;
+        RocketSyncPacket snapshot = RocketSyncPacket.latest(subLevel.getUniqueId());
+        return snapshot != null && snapshot.throttle() > 0f;
     }
 
     @Override
     protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.write(tag, registries, clientPacket);
         tag.putFloat("Throttle", throttle);
+        tag.putFloat("FractionalPropellant", fractionalPropellantMb);
         tag.put("Fuel", fuel.writeToNBT(registries, new CompoundTag()));
     }
 
@@ -213,6 +256,7 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
     protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.read(tag, registries, clientPacket);
         throttle = tag.getFloat("Throttle");
+        fractionalPropellantMb = tag.getFloat("FractionalPropellant");
         if (tag.contains("Fuel")) {
             fuel.readFromNBT(registries, tag.getCompound("Fuel"));
         }
@@ -221,13 +265,20 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
     /**
      * Spawns the exhaust plume for this thruster. Client side only.
      */
-    public void spawnPlume(float velocity) {
+    public void spawnPlume() {
         if (level == null || !level.isClientSide) {
             return;
         }
-        Vec3 nozzle = nozzlePosition();
+        Vec3 localNozzle = nozzlePosition();
+        Vector3d nozzle = new Vector3d(localNozzle.x, localNozzle.y, localNozzle.z);
+        Vector3d velocity = new Vector3d(exhaustAxis()).mul(0.18d);
+        SubLevelAccess subLevel = SableCompanion.INSTANCE.getContaining(level, getBlockPos());
+        if (subLevel != null) {
+            subLevel.logicalPose().transformPosition(nozzle);
+            new Quaterniond(subLevel.logicalPose().orientation()).transform(velocity);
+        }
         level.addAlwaysVisibleParticle(NorthstarParticles.ROCKET_PLUME.get(), true,
-                nozzle.x, nozzle.y, nozzle.z, 0, velocity, 0);
+                nozzle.x, nozzle.y, nozzle.z, velocity.x, velocity.y, velocity.z);
     }
 
     /**

@@ -42,6 +42,15 @@ public class NorthstarContentRemapper {
         remap("martian_steel", NorthstarItems.MARTIAN_STEEL_INGOT);
         remap("jet_engine", NorthstarBlocks.ROCKET_THRUSTER);
 
+        // Cosmonautics' duplicate titanium item IDs now resolve to Northstar's
+        // canonical materials, preserving references in existing saves.
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "titanium_ingot"), NorthstarItems.TITANIUM_INGOT);
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "raw_titanium"), NorthstarItems.RAW_TITANIUM_ORE);
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "crushed_raw_titanium"), NorthstarItems.CRUSHED_RAW_TITANIUM);
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "titanium_alloy"), NorthstarItems.TITANIUM_ALLOY_INGOT);
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "titanium_nugget"), NorthstarItems.TITANIUM_NUGGET);
+        remap(ResourceLocation.fromNamespaceAndPath("rocketnautics", "titanium_sheet"), NorthstarItems.TITANIUM_SHEET);
+
         remap(Registries.DIMENSION_TYPE, Northstar.asResource("earth_orbit"), NorthstarDimensionTypes.ORBIT.location());
     }
 

@@ -82,8 +82,6 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
             return;
         }
 
-        holder.contraption().getStorage().initialize();
-
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
@@ -115,18 +113,8 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
         button2 = new IconButton(x + 151, y + 7 + 18 + 1, AllIcons.I_NONE);
         addRenderableWidget(button2);
 
-        if (holder.entity() == null) {
-            button1.setIcon(AllIcons.I_CONFIRM);
-            button1.setToolTip(Component.translatable("northstar.gui.rocket_station.assemble"));
-        } else {
-            button1.setIcon(AllIcons.I_DISABLE);
-            if (holder.entity().isOutOfWorld()) {
-                button1.active = false;
-                button1.setToolTip(Component.translatable("northstar.gui.rocket_station.cannot_disassemble"));
-            } else {
-                button1.setToolTip(Component.translatable("northstar.gui.rocket_station.disassemble"));
-            }
-        }
+        button1.setIcon(AllIcons.I_CONFIRM);
+        button1.setToolTip(Component.translatable("northstar.gui.rocket_station.assemble"));
         button1.withCallback(() -> {
             if (button1.active) {
                 saveSettings(true);
@@ -147,7 +135,7 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
             List<DimensionEntry> options = new ArrayList<>(RocketStationMenu.getPossibleDestinations(NorthstarLevel.CLIENT_TRACKER, container.getItem(0)));
             options.sort(Comparator.comparing(dim -> dim.text().getString()));
 
-            RocketDestination destination = holder.be() != null ? holder.be().destination : holder.contraption().destination;
+            RocketDestination destination = holder.be().destination;
 
             if (options.isEmpty()) {
                 dimensionSelection.options(List.of(new DimensionEntry(null, null, List.of(), Component.empty())));
@@ -192,7 +180,6 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
     private void saveSettings(boolean toggleAssembly) {
         CatnipServices.NETWORK.sendToServer(new RocketStationEditPacket(
                 menu.contentHolder.pos(),
-                menu.contentHolder.entity() == null ? -1 : menu.contentHolder.entity().getId(),
                 toggleAssembly,
                 destinationSelection.get() == null ? null : destinationSelection.get().first()
         ));
@@ -228,12 +215,6 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
             labelY += 12;
         }
 
-        RocketContraptionEntity rocket = menu.contentHolder.entity();
-        if (rocket != null) {
-            boolean active = rocket.getStatus() == LaunchStatus.WAITING;
-            button1.setActive(active);
-            button2.setActive(active);
-        }
     }
 
     @Override
@@ -278,158 +259,15 @@ public class RocketStationScreen extends AbstractSimiContainerScreen<RocketStati
     private void updateInfo() {
         ClientLevel level = Minecraft.getInstance().level;
         RocketContraption contraption = menu.contentHolder.contraption();
-        RocketContraptionEntity rocket = menu.contentHolder.entity();
         DimensionEntry target = dimensionSelection.get();
-
-        // Fuel: <amount> / <required>
-        // Computers: <amount> / <maximum> (-N% fuel)
-        // Engines: <count> / <required>
-        // Shielding: <amount> / <required>
-        // Navigator: Available / Optional / Required
-        // Status: Disassembled / Landed / Launching / Ascending / Descending
-
-        Component infinite = Component.translatable("northstar.gui.rocket_station.infinite")
-                .withStyle(ChatFormatting.LIGHT_PURPLE);
-
-        BiFunction<Float, Float, Component> valueFormat = (value, required) -> NorthstarLang.numberDirect(value)
-                .withStyle(Float.isInfinite(required) ? ChatFormatting.GOLD : value >= required ? ChatFormatting.GREEN : ChatFormatting.RED);
-        Float2ObjectFunction<Component> requirementFormat = value -> Float.isInfinite(value) ?
-                Component.literal("?").withStyle(ChatFormatting.GOLD) :
-                NorthstarLang.numberDirect(value).withStyle(ChatFormatting.AQUA);
-
-
-        Planet targetPlanet = target != null && target.dimension() != null ?
-                NorthstarLevel.CLIENT_TRACKER.getPlanetById(target.dimension().planet()) :
-                null;
-        FuelCost requiredFuel = targetPlanet != null ? contraption.calculateRequiredFuel(
-                level.northstar$planet(), level.northstar$dimension(),
-                targetPlanet, target.dimension()
-        ) : null;
-
-        MutableComponent fuelTip = Component.empty()
-                .append(Component.translatable("northstar.gui.rocket.station.fuel.tip.info"))
-                .append("\n\n");
-
-        if (requiredFuel != null) {
-            fuelTip = fuelTip
-                    .append(Component.translatable(
-                            "northstar.gui.rocket_station.fuel.tip.takeoff",
-                            NorthstarLang.numberDirect((int) requiredFuel.takeoff()).withStyle(ChatFormatting.AQUA)
-                    ))
-                    .append("\n")
-                    .append(Component.translatable(
-                            "northstar.gui.rocket_station.fuel.tip.travel",
-                            NorthstarLang.numberDirect((int) requiredFuel.travel()).withStyle(ChatFormatting.AQUA)
-                    ))
-                    .append("\n")
-                    .append(Component.translatable(
-                            "northstar.gui.rocket_station.fuel.tip.landing",
-                            NorthstarLang.numberDirect((int) requiredFuel.landing()).withStyle(ChatFormatting.AQUA)
-                    ))
-                    .append("\n\n");
-        }
-
-        float availableFuel = contraption.calculateAvailableFuel();
-        if (availableFuel == 0) {
-            fuelTip = fuelTip.append(Component.translatable("northstar.gui.rocket_station.fuel.tip.no_fuel"));
-        } else {
-            Object2IntMap<Fluid> amounts = new Object2IntOpenHashMap<>();
-
-            IFluidHandler fluids = contraption.getStorage().getFluids();
-            for (int i = 0, j = fluids.getTanks(); i < j; i++) {
-                FluidStack stack = fluids.getFluidInTank(i);
-                FuelType fuel = FuelType.getFuelType(stack.getFluid());
-                if (fuel != null && fuel.gjPerMb() != 0) {
-                    amounts.computeInt(stack.getFluid(), (f, a) -> a == null ? stack.getAmount() : a + stack.getAmount());
-                }
-            }
-
-            fuelTip = fuelTip.append(Component.translatable("northstar.gui.rocket_station.fuel.tip.stored"));
-
-            for (Object2IntMap.Entry<Fluid> entry : amounts.object2IntEntrySet()) {
-                float energy = FuelType.getFuelType(entry.getKey()).gjPerMb() * entry.getIntValue();
-
-                fuelTip = fuelTip
-                        .append("\n")
-                        .append(new FluidStack(entry.getKey(), 1).getHoverName())
-                        .append(" ")
-                        .append(NorthstarLang.numberDirect(entry.getIntValue())
-                                .append(NorthstarLang.MB.component())
-                                .withStyle(ChatFormatting.AQUA))
-                        .append(" -> ")
-                        .append(NorthstarLang.numberDirect(energy)
-                                .append(NorthstarLang.GJ.component())
-                                .withStyle(ChatFormatting.AQUA));
-            }
-        }
-
-        Component fuel = Component.translatable(
-                        "northstar.gui.rocket_station.fuel",
-                        Component.empty()
-                                .append(contraption.infiniteFuel ? infinite : valueFormat.apply(availableFuel, requiredFuel == null ? Float.POSITIVE_INFINITY : requiredFuel.total()))
-                                .append(Component.literal(" / ").withStyle(ChatFormatting.GRAY))
-                                .append(requirementFormat.apply(requiredFuel == null ? Float.POSITIVE_INFINITY : (int) requiredFuel.total()))
-                ).northstar$onHover(HoverEvent.Action.SHOW_TEXT, fuelTip)
-                .northstar$onClick(ClickEvent.Action.CHANGE_PAGE, "fuel");
-
-        Component computers = Component.translatable(
-                "northstar.gui.rocket_station.targeting_computers",
-                Component.empty()
-                        .append(NorthstarLang.numberDirect(contraption.computerCount).withStyle(ChatFormatting.GREEN))
-                        .append(Component.literal(" / ").withStyle(ChatFormatting.GRAY))
-                        .append(NorthstarLang.numberDirect(NorthstarConfigs.server().targetingComputersNeeded.get()).withStyle(ChatFormatting.AQUA))
-                        .append(" ")
-                        .append(Component.translatable("northstar.gui.rocket_station.fuel_reduction", LangNumberFormat.format(Mth.floor(contraption.getTargetingComputerReduction() * 100))))
-        ).northstar$onHover(HoverEvent.Action.SHOW_TEXT, Component.translatable("northstar.gui.rocket_station.targeting_computers.tip"));
-
-        float requiredHeatShielding = target != null && target.dimension() != null ?
-                contraption.calculateRequiredHeatShielding(level.northstar$dimension(), target.dimension()) :
-                Float.POSITIVE_INFINITY;
-        Component heatShielding = Component.translatable(
-                        "northstar.gui.rocket_station.heat_shielding",
-                        Component.empty()
-                                .append(Float.isInfinite(contraption.heatShielding) ? infinite : valueFormat.apply((float) Mth.floor(contraption.heatShielding), requiredHeatShielding))
-                                .append(Component.literal(" / ").withStyle(ChatFormatting.GRAY))
-                                .append(requirementFormat.apply(Math.ceil(requiredHeatShielding)))
-                ).northstar$onHover(HoverEvent.Action.SHOW_TEXT, Component.translatable("northstar.gui.rocket_station.heat_shielding.tip"))
-                .northstar$onClick(ClickEvent.Action.CHANGE_PAGE, "heat_shielding");
-
-        float requiredThrusters = target != null && target.dimension() != null ?
-                contraption.calculateRequiredThrusters(Math.max(level.northstar$gravity(), target.dimension().gravity())) :
-                Float.POSITIVE_INFINITY;
-        Component thrusters = Component.translatable(
-                "northstar.gui.rocket_station.thrusters",
-                Component.empty()
-                        .append(contraption.thrusterCount == RocketContraption.INFINITE_THRUSTERS ? infinite : valueFormat.apply((float) contraption.thrusterCount, requiredThrusters))
-                        .append(Component.literal(" / ").withStyle(ChatFormatting.GRAY))
-                        .append(requirementFormat.apply(requiredThrusters))
-        ).northstar$onHover(HoverEvent.Action.SHOW_TEXT, Component.translatable("northstar.gui.rocket_station.thrusters.tip"));
-
-        Planet currentPlanet = level.northstar$planet();
-        Component navigatorStatus;
-        if (contraption.hasInterplanetaryNavigator) {
-            navigatorStatus = Component.translatable("northstar.gui.rocket_station.navigator.available").withStyle(ChatFormatting.GREEN);
-        } else if (currentPlanet != null && target != null && target.planet() != null && PlanetProperties.isInterplanetary(currentPlanet, target.planet())) {
-            navigatorStatus = Component.translatable("northstar.gui.rocket_station.navigator.required").withStyle(ChatFormatting.RED);
-        } else {
-            navigatorStatus = Component.translatable("northstar.gui.rocket_station.navigator.optional").withStyle(ChatFormatting.YELLOW);
-        }
-        Component navigator = Component.translatable("northstar.gui.rocket_station.navigator", navigatorStatus);
-
-        MutableComponent baseStatus;
-        if (rocket != null) {
-            baseStatus = switch (rocket.getStatus()) {
-                case WAITING -> Component.translatable("northstar.gui.rocket_station.status.landed");
-                case COUNTDOWN -> Component.translatable("northstar.gui.rocket_station.status.launching");
-                case ASCENDING -> Component.translatable("northstar.gui.rocket_station.status.ascending");
-                case DESCENDING -> Component.translatable("northstar.gui.rocket_station.status.descending");
-            };
-        } else {
-            baseStatus = Component.translatable("northstar.gui.rocket_station.status.disassembled");
-        }
-        Component status = Component.translatable("northstar.gui.rocket_station.status", baseStatus.withStyle(ChatFormatting.GREEN));
-
-        messages = List.of(fuel, computers, heatShielding, thrusters, navigator, status);
+        messages = List.of(
+                Component.literal("Blocks: " + contraption.blocks.size()),
+                Component.literal("Thrusters: " + contraption.thrusterPositions.size()),
+                Component.literal("Fuel tanks: " + contraption.fuelTankPositions.size()),
+                Component.literal("Seats: " + contraption.seatPositions.size()),
+                Component.literal("Mass rating: " + (int) contraption.massWeight),
+                Component.literal(contraption.hasControls ? "Flight controls ready" : "Missing flight controls")
+        );
     }
 
 }

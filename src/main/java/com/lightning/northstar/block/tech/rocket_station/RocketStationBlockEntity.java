@@ -1,8 +1,8 @@
 package com.lightning.northstar.block.tech.rocket_station;
 
 import com.lightning.northstar.contraption.rocket.RocketContraption;
-import com.lightning.northstar.contraption.rocket.RocketContraptionEntity;
 import com.lightning.northstar.contraption.rocket.RocketDestination;
+import com.lightning.northstar.physics.RocketSublevelState;
 import com.lightning.northstar.util.BetterSimpleContainer;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.contraptions.AssemblyException;
@@ -10,17 +10,21 @@ import com.simibubi.create.content.contraptions.IDisplayAssemblyExceptions;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import dev.ryanhcode.sable.api.SubLevelAssemblyHelper;
+import dev.ryanhcode.sable.api.SubLevelHelper;
+import dev.ryanhcode.sable.sublevel.ServerSubLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
@@ -30,6 +34,7 @@ public class RocketStationBlockEntity extends SmartBlockEntity implements IDispl
 
     public AssemblyException lastException;
     public RocketDestination destination;
+    public RocketContraption scannedAssembly;
 
     public RocketStationBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -55,8 +60,7 @@ public class RocketStationBlockEntity extends SmartBlockEntity implements IDispl
                 throw new AssemblyException(Component.translatable("northstar.contraption.rocket.assembly.unsupported_dimension"));
             }
 
-            rocket = new RocketContraption();
-            rocket.assemble(getLevel(), getBlockPos());
+            rocket = RocketContraption.capture(getLevel(), getBlockPos());
 
             if (!rocket.hasControls) {
                 throw new AssemblyException(Component.translatable("northstar.contraption.rocket.assembly.missing_controls"));
@@ -68,6 +72,7 @@ public class RocketStationBlockEntity extends SmartBlockEntity implements IDispl
             rocket = null;
         }
         sendData();
+        scannedAssembly = rocket;
         return rocket;
     }
 
@@ -77,13 +82,21 @@ public class RocketStationBlockEntity extends SmartBlockEntity implements IDispl
             return;
         }
 
-        RocketContraptionEntity entity = RocketContraptionEntity.create(level, rocket);
-        entity.setPos(Vec3.atLowerCornerOf(worldPosition));
+        if (!(level instanceof ServerLevel serverLevel)) return;
 
-        AllSoundEvents.CONTRAPTION_ASSEMBLE.playOnServer(level, worldPosition);
+        List<Player> passengers = serverLevel.getEntitiesOfClass(Player.class, rocket.bounds.toAABB().inflate(1));
+        ServerSubLevel subLevel = SubLevelAssemblyHelper.assembleBlocks(
+                serverLevel, worldPosition, rocket.blocks, rocket.bounds);
+        RocketSublevelState.initialize(subLevel, destination,
+                new RocketDestination(serverLevel.dimension().location(), worldPosition,
+                        getBlockState().getValue(RocketStationBlock.FACING)));
+        for (Player passenger : passengers) {
+            if (!passenger.isRemoved()) {
+                SubLevelHelper.pushEntityLocal(subLevel, passenger);
+            }
+        }
 
-        rocket.removeBlocksFromWorld(level, BlockPos.ZERO);
-        level.addFreshEntity(entity);
+        AllSoundEvents.CONTRAPTION_ASSEMBLE.playOnServer(serverLevel, worldPosition);
     }
 
     @Override
