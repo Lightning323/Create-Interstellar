@@ -2,10 +2,12 @@ package com.lightning.northstar.mixin.compat.sable;
 
 import com.lightning.northstar.accessor.MissingMixinException;
 import com.lightning.northstar.api.WhenModLoaded;
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.data.ModCompat;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.ryanhcode.sable.SableConfig;
+import dev.ryanhcode.sable.annotation.MixinModVersionConstraint;
 import dev.ryanhcode.sable.index.SableAttributes;
 import dev.ryanhcode.sable.network.packets.tcp.ServerboundPunchSubLevelPacket;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -26,6 +28,7 @@ import java.util.Objects;
 
 @Mixin(ServerboundPunchSubLevelPacket.class)
 @WhenModLoaded(ModCompat.SABLE)
+@MixinModVersionConstraint(NorthstarSable.TARGET_SABLE_VERSION)
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class ServerBoundPunchSubLevelPacketMixin {

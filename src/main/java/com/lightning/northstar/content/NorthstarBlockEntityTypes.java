@@ -16,6 +16,7 @@ import com.lightning.northstar.block.tech.computer_rack.TargetingComputerRackBlo
 import com.lightning.northstar.block.tech.computer_rack.TargetingComputerRackRenderer;
 import com.lightning.northstar.block.tech.electrolysis_machine.ElectrolysisMachineBlockEntity;
 import com.lightning.northstar.block.tech.electrolysis_machine.ElectrolysisMachineRenderer;
+import com.lightning.northstar.block.tech.gyrodyne.GyrodyneBlockEntity;
 import com.lightning.northstar.block.tech.ice_box.IceBoxBlockEntity;
 import com.lightning.northstar.block.tech.ice_box.IceBoxRenderer;
 import com.lightning.northstar.block.tech.large_fan.LargeFanBlockEntity;
@@ -170,6 +171,11 @@ public class NorthstarBlockEntityTypes {
     public static final BlockEntityEntry<RocketThrusterBlockEntity> ROCKET_THRUSTER = REGISTRATE
             .blockEntity("rocket_thruster", RocketThrusterBlockEntity::new)
             .validBlocks(NorthstarBlocks.ROCKET_THRUSTER)
+            .register();
+
+    public static final BlockEntityEntry<GyrodyneBlockEntity> GYRODYNE = REGISTRATE
+            .blockEntity("gyrodyne", GyrodyneBlockEntity::new)
+            .validBlocks(NorthstarBlocks.GYRODYNE)
             .register();
 
     public static final BlockEntityEntry<BracketedKineticBlockEntity> BRACKETED_KINETIC = REGISTRATE

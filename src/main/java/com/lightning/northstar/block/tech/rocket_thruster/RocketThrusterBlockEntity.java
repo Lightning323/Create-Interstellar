@@ -1,5 +1,6 @@
 package com.lightning.northstar.block.tech.rocket_thruster;
 
+import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.contraption.FuelType;
 import com.lightning.northstar.particle.NorthstarParticles;
 import com.lightning.northstar.physics.RocketPropulsion;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import org.joml.Quaterniond;
 import org.joml.Vector3d;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -103,28 +103,33 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
 
     @Override
     public void sable$physicsTick(ServerSubLevel subLevel, RigidBodyHandle body, double deltaTime) {
-        if (!isFiring() || !body.isValid() || deltaTime <= 0d) {
+        if (!isFiring() || body == null || !body.isValid() || deltaTime <= 0d) {
             return;
         }
 
-        Quaterniond orientation = new Quaterniond(subLevel.logicalPose().orientation());
-        Vector3d thrust = RocketPropulsion.forceFor(currentThruster(), orientation);
+        NorthstarSable.VesselFrame frame = NorthstarSable.frame(subLevel, body);
+        if (!frame.hasMass()) {
+            // Without a mass tracker there is nothing to push against, so burning
+            // propellant would be theft. Cut the throttle so the failure is visible.
+            throttle = 0f;
+            return;
+        }
+
+        Vector3d thrust = RocketPropulsion.forceFor(currentThruster(), frame.orientation());
         double impulseMagnitude = thrust.length() * deltaTime;
         if (impulseMagnitude <= 0d) {
             return;
         }
 
-        float propellantMb = RocketPropulsion.propellantFor(impulseMagnitude);
-
         // Refuse to burn without propellant, and cut the throttle so the
         // failure is visible to the player rather than silently ignored.
-        if (!tryConsume(propellantMb)) {
+        if (!tryConsume(RocketPropulsion.propellantFor(impulseMagnitude))) {
             throttle = 0f;
             return;
         }
 
         Vector3d impulse = new Vector3d(thrust).mul(deltaTime);
-        body.applyImpulseAtPoint(nozzlePosition(), new Vec3(impulse.x, impulse.y, impulse.z));
+        frame.body().applyImpulseAtPoint(nozzlePosition(), new Vec3(impulse.x, impulse.y, impulse.z));
     }
 
     /**
@@ -182,10 +187,10 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
             return false;
         }
 
-        // Propellant is requested in impulse, but tanks hold fluid, so convert
-        // through the loaded fuel's specific energy and round up to whole mB.
-        double energyNeeded = RocketPropulsion.propellantFor(propellantMb) * fuelType.gjPerMb();
-        int take = Math.min(stack.getAmount(), (int) Math.ceil(energyNeeded / fuelType.gjPerMb()));
+        // propellantMb is already a volume of fluid, so it must not be run back
+        // through RocketPropulsion.propellantFor, which expects an impulse. Round up
+        // to whole mB because a tank can only drain in integers.
+        int take = Math.min(stack.getAmount(), (int) Math.ceil(propellantMb));
         if (take <= 0) {
             return false;
         }

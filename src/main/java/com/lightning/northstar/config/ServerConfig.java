@@ -35,6 +35,12 @@ public class ServerConfig extends ConfigBase {
     public final ConfigFloat landingFuelScale = f(10, 0, "landingFuelScale");
     public final ConfigFloat travelFuelScale = f(10, 0, "travelFuelScale");
 
+    public final ConfigGroup attitudeControl = group(3, "attitudeControl", "Reaction wheel tuning, for gyrodyne blocks inside rockets");
+
+    public final ConfigFloat gyrodyneTorque = f(2000, 0, "gyrodyneTorque", "Torque one gyrodyne produces at the reference vessel mass, in Newton-metres. Scales with the square root of vessel mass.");
+    public final ConfigFloat gyrodyneProportionalGain = f(4000, 0, "gyrodyneProportionalGain", "Torque per radian of attitude error, in Newton-metres per radian. Higher corrects faster but oscillates more.");
+    public final ConfigFloat gyrodyneDampingGain = f(900, 0, "gyrodyneDampingGain", "Torque per rad/s of angular velocity, in Newton-metres per rad/s. Higher settles harder but fights the proportional term.");
+
     public final ConfigGroup gameplay = group(1, "gameplay");
 
     public final ConfigFloat telescopePlanetSpeed = f(10, 0, "telescopePlanetSpeed", "How fast should planets move in the telescope screen");

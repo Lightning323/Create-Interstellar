@@ -10,6 +10,7 @@ import com.lightning.northstar.block.tech.cogs.SpaceCogWheelBlock;
 import com.lightning.northstar.block.tech.combustion_engine.CombustionEngineBlock;
 import com.lightning.northstar.block.tech.computer_rack.TargetingComputerRackBlock;
 import com.lightning.northstar.block.tech.electrolysis_machine.ElectrolysisMachineBlock;
+import com.lightning.northstar.block.tech.gyrodyne.GyrodyneBlock;
 import com.lightning.northstar.block.tech.ice_box.IceBoxBlock;
 import com.lightning.northstar.block.tech.large_fan.LargeFanBlock;
 import com.lightning.northstar.block.tech.oxygen_detector.OxygenDetectorBlock;
@@ -4078,6 +4079,20 @@ public class NorthstarBlocks {
             .onRegister(MovementBehaviour.movementBehaviour(new RocketThrusterMovementBehaviour()))
             .item()
             .model((c, p) -> p.withExistingParent(p.name(c), p.modLoc("block/rocket_thruster/single")))
+            .build()
+            .register();
+
+    public static final BlockEntry<GyrodyneBlock> GYRODYNE = REGISTRATE
+            .block("gyrodyne", GyrodyneBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .noOcclusion()
+                    .isViewBlocking(NorthstarBlocks::never))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .tag(NorthstarBlockTags.ROCKET_ALWAYS_ACTIVE_ACTORS.tag)
+            .blockstate(NorthstarDataGenModels.manualModel())
+            .item()
+            .model((c, p) -> p.withExistingParent(p.name(c), p.modLoc("block/gyrodyne/single")))
             .build()
             .register();
 

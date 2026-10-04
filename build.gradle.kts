@@ -171,6 +171,8 @@ repositories {
     maven("https://maven.ryanhcode.dev/releases") {
         content {
             includeGroup("dev.ryanhcode.sable")
+            // Needed to resolve sable-companion, which sable-neoforge declares as a
+            // transitive dependency. Northstar does not declare it itself.
             includeGroup("dev.ryanhcode.sable-companion")
         }
     }
@@ -203,7 +205,8 @@ dependencies {
     implementation(libs.kubejs.create)
     implementation(libs.rhino)
     implementation(libs.sable)
-    implementation(libs.sable.companion)
+    // sable-companion is jar-in-jarred by sable-neoforge; declaring it separately
+    // would pull a second copy onto the compile classpath. See MIGRATION.md 6.2.
     implementation(libs.tfmg)
     implementation(libs.aeronautics)
     implementation(libs.create.kinetic)

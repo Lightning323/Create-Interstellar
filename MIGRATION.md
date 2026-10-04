@@ -1,11 +1,54 @@
 # Northstar Redux — Spaceship Physics Migration
 
-Status: **design + licensing groundwork complete. Physics engine swap not yet implemented.**
+Status: **design + licensing groundwork complete. Physics engine swap in
+progress: Sable propulsion (phase 3) and gyrodyne attitude control landed.**
 
 This document records the verified findings, the target architecture, the
 file-by-file migration plan, the mixin conflict analysis and the required
 `build.gradle` changes for replacing Northstar's contraption-based space
 movement with rigid-body spaceship physics.
+
+---
+
+## 0. Landed so far
+
+### Sable propulsion — phase 3
+
+`block/tech/rocket_thruster/RocketThrusterBlockEntity.java` implements
+`BlockEntitySubLevelActor` and applies `ForceTotal` through Sable in
+`sable$physicsTick`. The force, propellant and mass maths lives in
+`physics/RocketPropulsion.java`, which takes `RigidBodyHandle`, `MassData` and
+the thruster list, so it is unit-tested without a running world.
+`RocketThrusterMovementBehaviour` is gone; `MovementBehaviour` is a contraption
+concept and meant nothing inside a sublevel.
+
+### Gyrodyne attitude control — phase 5 precursor
+
+Reaction wheels arrived ahead of the flight controls because they are the part
+of attitude control that does not depend on the removed
+`RocketContraptionEntity`. See `block/tech/gyrodyne/`.
+
+`physics/GyrodyneControl.java` is a pure proportional-derivative law on the
+vessel's attitude, expressed in newton-metres so the result can go straight to
+`RigidBodyHandle.applyAngularImpulse` with no fudge factors:
+
+    torque = proportional * attitudeError - damping * angularVelocity
+
+Torque capacity scales as `sqrt(mass / 30 kg)`, since rotational inertia grows
+with mass but so do a ship's dimensions. Eleven modes: rate damping, attitude
+hold, and the vector modes (prograde, radial, horizon, sun, and so on). Redstone
+*disengages* a wheel rather than engaging it, so a signal reads as an emergency
+stop. Gimbal tilt is a synced readout only and never limits torque.
+
+Two JOML traps worth remembering, both of which bit this port and are now
+pinned by tests:
+
+- `Vector3d.cross(a, b)` resolves to the **dest-out** overload
+  `cross(Vector3dc a, Vector3d dest)`. It writes `this x a` into `b` and returns
+  `b`, leaving the receiver alone. Use `new Vector3d(a).cross(b)`.
+- `Quaterniond.transform(vec)` mutates `vec` in place; only
+  `transform(vec, dest)` is non-destructive. Reading an argument after a
+  one-argument `transform` gives you the rotated value, not the original.
 
 ---
 
@@ -223,6 +266,8 @@ Key semantic changes:
 | --- | --- |
 | `ponder/scene/RocketStationPonder.java` | Re-word to physics terminology; the current text describes thrust counts and fuel budgets. Update `assets/northstar/ponder/rocket.nbt` accordingly. |
 | `content/NorthstarCreativeModeTab.java`, lang files | Update tooltips for the new propellant/throttle model. |
+| New `block/tech/gyrodyne/` | **Done.** `GyrodyneBlockEntity` applies angular impulse in `sable$physicsTick`; `GyrodyneMode` holds the eleven attitude modes; `physics/GyrodyneControl.java` holds the control law. |
+| New `physics/GyrodyneControl.java` | **Done.** Pure PD law in N*m, no world or Sable types, so it unit-tests standalone. |
 
 ---
 
