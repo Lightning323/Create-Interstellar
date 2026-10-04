@@ -1,0 +1,32 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "northstar:rutile_concentrate"
+    },
+    {
+      "item": "northstar:rutile_concentrate"
+    },
+    {
+      "item": "northstar:rutile_concentrate"
+    },
+    {
+      "item": "northstar:sodium_catalyst"
+    },
+    {
+      "item": "create:zinc_ingot"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 500,
+      "tag": "c:carbon"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "northstar:titanium_tetrachloride"
+    }
+  ]
+}

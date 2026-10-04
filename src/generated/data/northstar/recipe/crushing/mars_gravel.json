@@ -1,0 +1,24 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:mars_gravel"
+    }
+  ],
+  "processing_time": 500,
+  "results": [
+    {
+      "id": "northstar:mars_sand"
+    },
+    {
+      "chance": 0.75,
+      "count": 4,
+      "id": "northstar:salt"
+    },
+    {
+      "chance": 0.25,
+      "count": 2,
+      "id": "northstar:salt"
+    }
+  ]
+}

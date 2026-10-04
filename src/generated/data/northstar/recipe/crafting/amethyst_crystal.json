@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "northstar:polished_amethyst"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    " A ",
+    "RAR",
+    "IAI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:amethyst_crystal"
+  }
+}

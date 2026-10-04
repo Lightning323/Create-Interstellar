@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "color=black": {
+      "model": "northstar:block/vent_insulated_black"
+    },
+    "color=blue": {
+      "model": "northstar:block/vent_insulated_blue"
+    },
+    "color=brown": {
+      "model": "northstar:block/vent_insulated_brown"
+    },
+    "color=cyan": {
+      "model": "northstar:block/vent_insulated_cyan"
+    },
+    "color=gray": {
+      "model": "northstar:block/vent_insulated_gray"
+    },
+    "color=green": {
+      "model": "northstar:block/vent_insulated_green"
+    },
+    "color=light_blue": {
+      "model": "northstar:block/vent_insulated_light_blue"
+    },
+    "color=light_gray": {
+      "model": "northstar:block/vent_insulated_light_gray"
+    },
+    "color=lime": {
+      "model": "northstar:block/vent_insulated_lime"
+    },
+    "color=magenta": {
+      "model": "northstar:block/vent_insulated_magenta"
+    },
+    "color=orange": {
+      "model": "northstar:block/vent_insulated_orange"
+    },
+    "color=pink": {
+      "model": "northstar:block/vent_insulated_pink"
+    },
+    "color=purple": {
+      "model": "northstar:block/vent_insulated_purple"
+    },
+    "color=red": {
+      "model": "northstar:block/vent_insulated_red"
+    },
+    "color=white": {
+      "model": "northstar:block/vent_insulated_white"
+    },
+    "color=yellow": {
+      "model": "northstar:block/vent_insulated_yellow"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/tungsten"
+    },
+    "C": {
+      "item": "northstar:targeting_computer"
+    },
+    "D": {
+      "item": "northstar:polished_diamond"
+    },
+    "H": {
+      "item": "northstar:hardened_precision_mechanism"
+    },
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "S": {
+      "tag": "c:plates/titanium"
+    },
+    "T": {
+      "tag": "c:ingots/titanium"
+    }
+  },
+  "pattern": [
+    " SDS ",
+    "TSLST",
+    "TSSST",
+    "TCHCT",
+    "BBBBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:rocket_waypoint"
+  }
+}

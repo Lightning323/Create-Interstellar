@@ -1,0 +1,15 @@
+{
+  "central_body": "northstar:sol",
+  "diameter": 49244.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 131.72,
+    "duration_days": 60190.0,
+    "inclination_deg": 1.77,
+    "initial_mean_anomaly_deg": 256.228,
+    "radius": 30.07
+  },
+  "renderer": "northstar:solar_system/neptune_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.6713
+}

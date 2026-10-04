@@ -1,0 +1,96 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:sturdy_sheet"
+  },
+  "results": [
+    {
+      "id": "northstar:titanium_ingot"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 500,
+          "tag": "minecraft:lava"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 500,
+          "tag": "c:titanium_tetrachloride"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 1000,
+          "tag": "minecraft:water"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:incomplete_titanium_ingot"
+  }
+}

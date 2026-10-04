@@ -1,0 +1,44 @@
+{
+  "feature": {
+    "type": "minecraft:ore",
+    "config": {
+      "discard_chance_on_air_exposure": 0.0,
+      "size": 64,
+      "targets": [
+        {
+          "state": {
+            "Name": "minecraft:magma_block"
+          },
+          "target": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "northstar:base_stone_mars"
+          }
+        }
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 4
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 8
+        },
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

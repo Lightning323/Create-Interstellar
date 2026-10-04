@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "northstar:block/moon_glowstone_ore"
+  }
+}

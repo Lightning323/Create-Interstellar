@@ -1,0 +1,21 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "northstar:tower_fungus_stem_block"
+    },
+    {
+      "item": "northstar:tower_fungus_stem_block"
+    },
+    {
+      "item": "northstar:tower_fungus_stem_block"
+    }
+  ],
+  "results": [
+    {
+      "amount": 1000,
+      "id": "northstar:sodium"
+    }
+  ]
+}

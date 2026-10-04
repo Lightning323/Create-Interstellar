@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "northstar:polished_lunar_sapphire"
+    },
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "I": {
+      "tag": "c:ingots/titanium"
+    },
+    "L": {
+      "item": "northstar:lunar_sapphire_crystal"
+    },
+    "S": {
+      "item": "northstar:rocket_station"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    " TTT ",
+    "T#C#T",
+    "TCSCT",
+    "T#C#T",
+    "IILII"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:auto_lander"
+  },
+  "show_notification": false
+}

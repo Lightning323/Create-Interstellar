@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "northstar:venus_stone"
+    },
+    "C": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "result": {
+    "count": 4,
+    "id": "northstar:venus_stone_lamp"
+  }
+}

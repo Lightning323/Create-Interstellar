@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "northstar:lunar_sapphire_shard"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:polished_lunar_sapphire"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "values": [
+    "northstar:brine_bucket",
+    "northstar:liquid_hydrogen_bucket",
+    "northstar:liquid_oxygen_bucket",
+    "northstar:methane_bucket",
+    "northstar:sulfuric_acid_bucket",
+    "northstar:hydrocarbon_bucket",
+    "northstar:biofuel_bucket"
+  ]
+}

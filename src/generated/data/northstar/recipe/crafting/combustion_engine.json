@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "create:industrial_iron_block"
+    },
+    "C": {
+      "item": "northstar:rocket_combustion_chamber"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "PTP",
+    "TCT",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:combustion_engine"
+  }
+}

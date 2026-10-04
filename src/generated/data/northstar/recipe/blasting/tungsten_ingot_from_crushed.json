@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.8,
+  "ingredient": {
+    "item": "northstar:crushed_raw_tungsten"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:tungsten_ingot"
+  }
+}

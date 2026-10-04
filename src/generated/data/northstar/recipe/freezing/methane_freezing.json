@@ -1,0 +1,17 @@
+{
+  "type": "northstar:freezing",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 1000,
+      "tag": "c:methane"
+    }
+  ],
+  "maxTemperature": -182,
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "northstar:methane_ice"
+    }
+  ]
+}

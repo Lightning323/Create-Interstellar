@@ -1,0 +1,17 @@
+{
+  "atmosphere": {
+    "composition": [],
+    "daytime_star_brightness": 1.0,
+    "pressure_pa": 0.0
+  },
+  "average_temperature": -270.0,
+  "dimension": "northstar:mercury_orbit",
+  "dimension_below": "northstar:mercury",
+  "gravity": 0.0,
+  "heat_gradient": 0.0,
+  "is_orbit": true,
+  "name": "orbit",
+  "planet": "northstar:mercury",
+  "temperature": -270.0,
+  "wind_multiplier": 0.0
+}

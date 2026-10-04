@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "northstar:martian_steel_large_plating"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:martian_steel_plating"
+  }
+}

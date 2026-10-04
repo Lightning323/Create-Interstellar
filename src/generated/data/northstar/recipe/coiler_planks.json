@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "northstar:coiler_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "northstar:coiler_planks"
+  }
+}

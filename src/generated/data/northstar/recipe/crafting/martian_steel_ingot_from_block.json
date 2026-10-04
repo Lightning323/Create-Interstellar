@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "northstar:martian_steel_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "northstar:martian_steel_ingot"
+  }
+}

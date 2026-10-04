@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 1469.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 79.339,
+    "inclination_deg": 42.2,
+    "radius": 0.024
+  },
+  "renderer": "northstar:solar_system/saturn/iapetus_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 79.33
+}

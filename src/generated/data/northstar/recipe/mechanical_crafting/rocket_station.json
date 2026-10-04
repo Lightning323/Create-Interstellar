@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "L": {
+      "item": "northstar:targeting_computer"
+    },
+    "M": {
+      "item": "northstar:hardened_precision_mechanism"
+    },
+    "S": {
+      "tag": "c:plates/titanium"
+    },
+    "T": {
+      "tag": "c:ingots/titanium"
+    },
+    "W": {
+      "item": "northstar:iron_cogwheel"
+    }
+  },
+  "pattern": [
+    " SSS ",
+    "SMCMS",
+    "SWLWS",
+    "SMCMS",
+    "TTTTT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:rocket_station"
+  },
+  "show_notification": false
+}

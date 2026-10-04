@@ -1,0 +1,15 @@
+{
+  "central_body": "northstar:sol",
+  "diameter": 50724.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 74.006,
+    "duration_days": 30687.0,
+    "inclination_deg": 0.77,
+    "initial_mean_anomaly_deg": 142.2386,
+    "radius": 19.22
+  },
+  "renderer": "northstar:solar_system/uranus_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -0.718
+}

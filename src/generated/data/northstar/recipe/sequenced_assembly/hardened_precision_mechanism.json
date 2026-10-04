@@ -1,0 +1,74 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:precision_mechanism"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 85.0,
+      "id": "northstar:hardened_precision_mechanism"
+    },
+    {
+      "chance": 5.0,
+      "id": "minecraft:iron_nugget"
+    },
+    {
+      "chance": 10.0,
+      "id": "northstar:iron_cogwheel"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_hardened_precision_mechanism"
+        },
+        {
+          "tag": "c:nuggets/titanium"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_hardened_precision_mechanism"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_hardened_precision_mechanism"
+        },
+        {
+          "item": "northstar:iron_cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_hardened_precision_mechanism"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_hardened_precision_mechanism"
+        },
+        {
+          "item": "northstar:iron_large_cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_hardened_precision_mechanism"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:incomplete_hardened_precision_mechanism"
+  }
+}

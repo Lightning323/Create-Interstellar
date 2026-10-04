@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "northstar:tungsten_plating_stairs_from_tungsten_plating_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tungsten_plating": {
+      "conditions": {
+        "items": [
+          {
+            "items": "northstar:tungsten_plating"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tungsten_plating"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "northstar:tungsten_plating_stairs_from_tungsten_plating_stonecutting"
+    ]
+  }
+}

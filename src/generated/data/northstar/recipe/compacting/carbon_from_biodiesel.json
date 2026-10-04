@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createdieselgenerators"
+    }
+  ],
+  "type": "create:compacting",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 1000,
+      "tag": "northstar:compat_cdg_biodiesel"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "northstar:carbon"
+    }
+  ]
+}

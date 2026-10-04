@@ -1,0 +1,32 @@
+{
+  "values": [
+    "northstar:venus_mimic",
+    "northstar:venus_scorpion",
+    "northstar:venus_stone_bull",
+    "northstar:venus_vulture",
+    "northstar:mars_worm",
+    "northstar:mars_toad",
+    "northstar:mars_cobra",
+    "northstar:mars_moth",
+    "northstar:moon_lunargrade",
+    "northstar:moon_snail",
+    "northstar:moon_eel",
+    "northstar:frozen_zombie",
+    "northstar:mercury_raptor",
+    "northstar:mercury_roach",
+    "northstar:mercury_tortoise",
+    "minecraft:cod",
+    "minecraft:iron_golem",
+    "minecraft:salmon",
+    "minecraft:skeleton",
+    "minecraft:skeleton_horse",
+    "minecraft:snow_golem",
+    "minecraft:stray",
+    "minecraft:tadpole",
+    "minecraft:tropical_fish",
+    "minecraft:wither",
+    "minecraft:wither_skeleton",
+    "minecraft:zombie",
+    "minecraft:zombie_horse"
+  ]
+}

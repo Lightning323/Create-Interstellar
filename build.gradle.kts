@@ -22,6 +22,11 @@ val generatedResources = file("src/generated")
 
 sourceSets {
     main {
+        // The data generator output must be part of the main resources: in dev runs FML builds
+        // the mod's data pack ("mod/northstar") from the main source set output, so biomes,
+        // dimension types, etc. have to be staged into build/resources/main via processResources.
+        // (This does NOT create a task cycle: declaring an input directory does not make
+        // processResources depend on the data run. Only an explicit dependsOn would do that.)
         resources.srcDir(generatedResources)
 
         blossom.javaSources {
@@ -172,11 +177,38 @@ dependencies {
     implementation(libs.sable)
     implementation(libs.sable.companion)
     implementation(libs.tfmg)
+    implementation(libs.aeronautics)
+    implementation(libs.create.kinetic)
+    implementation(libs.creative.mode.tweaks)
 
     "tfmgCeImplementation"(libs.tfmg.ce)
 
     // Create a folder name "mods-obf" inside "run" and put extra mods needed for testing here
     file("run/mods-obf-1.21.1").listFiles()?.forEach { runtimeOnly("local:${it.nameWithoutExtension}") }
+}
+
+// The worldgen datapack (biomes, placed/configured features, dimension types, ...) only exists as
+// data generator output in $generatedResources, which is not checked in. Anything that packages or
+// loads the mod's resources has to generate it first, otherwise data/northstar/dimension/*.json
+// references biomes that are not in the registry and the registries fail to load
+// ("No key preset in MapLike[...]" / "Failed to get element ResourceKey[minecraft:worldgen/biome ...]").
+//
+// Dev runs load the mod's data pack from the main source set output, which already includes the
+// generator output via `resources.srcDir` above, so no extra wiring is needed there. For packaging,
+// processResources may run before the data generator on a fresh checkout, so the jar additionally
+// bundles a post-data-run copy of the generated resources to guarantee it is never stale.
+val generatedOutput = layout.buildDirectory.dir("generated/resources/main")
+
+val generateResources = tasks.register<Sync>("generateResources") {
+    group = "northstar"
+    description = "Runs the data generator and stages its output for the jar."
+    dependsOn(tasks.named("runData"))
+    from(generatedResources)
+    into(generatedOutput)
+}
+
+tasks.named<Jar>("jar") {
+    from(generateResources)
 }
 
 tasks.jar {

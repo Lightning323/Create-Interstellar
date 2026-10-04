@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_leggings"
+    },
+    "F": {
+      "item": "northstar:durable_fabric"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    }
+  },
+  "pattern": [
+    "IFI",
+    "FAF",
+    "IFI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:iron_space_suit_leggings"
+  }
+}

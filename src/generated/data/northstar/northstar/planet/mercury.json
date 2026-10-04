@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:sol",
+  "diameter": 4879.4,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 48.33167,
+    "duration_days": 88.0,
+    "inclination_deg": 7.0487,
+    "initial_mean_anomaly_deg": 174.79253,
+    "radius": 0.38709893
+  },
+  "renderer": "northstar:solar_system/mercury_sky",
+  "required_science": 6.0,
+  "rotation_period_days": 58.64583,
+  "texture": "northstar:solar_system/mercury"
+}

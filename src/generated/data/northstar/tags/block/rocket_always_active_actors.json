@@ -1,0 +1,9 @@
+{
+  "values": [
+    "northstar:oxygen_filler",
+    "northstar:oxygen_sealer",
+    "northstar:temperature_regulator",
+    "northstar:rocket_controls",
+    "northstar:rocket_thruster"
+  ]
+}

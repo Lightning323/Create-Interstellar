@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "northstar:hardened_precision_mechanism"
+    },
+    "P": {
+      "item": "create:propeller"
+    },
+    "S": {
+      "item": "northstar:oxygen_separator"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TST",
+    "TMT",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:rocket_combustion_chamber"
+  }
+}

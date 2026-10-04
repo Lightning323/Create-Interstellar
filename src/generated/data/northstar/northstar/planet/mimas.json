@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 396.4,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 0.94366,
+    "inclination_deg": 28.304,
+    "radius": 0.00124025829
+  },
+  "renderer": "northstar:solar_system/saturn/mimas_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.9423583333333333
+}

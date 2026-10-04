@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "northstar:item/broken_iron_space_suit_chestpiece",
+    "layer1": "northstar:item/broken_iron_space_suit_chestpiece_overlay"
+  }
+}

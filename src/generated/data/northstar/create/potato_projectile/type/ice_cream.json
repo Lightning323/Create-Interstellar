@@ -1,0 +1,18 @@
+{
+  "damage": 5,
+  "items": [
+    "northstar:chocolate_ice_cream",
+    "northstar:strawberry_ice_cream",
+    "northstar:vanilla_ice_cream"
+  ],
+  "knockback": 0.2,
+  "on_entity_hit": {
+    "type": "northstar:freezing"
+  },
+  "render_mode": {
+    "type": "create:toward_motion",
+    "spin": 1.0,
+    "sprite_angle_offset": 220
+  },
+  "velocity_multiplier": 1.2
+}

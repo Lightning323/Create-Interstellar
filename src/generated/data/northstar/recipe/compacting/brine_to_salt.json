@@ -1,0 +1,16 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 750,
+      "tag": "c:brine"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:salt"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "I": {
+      "item": "create:industrial_iron_block"
+    },
+    "L": {
+      "item": "minecraft:lever"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "L L",
+    "TTT",
+    "CCC",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:rocket_controls"
+  },
+  "show_notification": false
+}

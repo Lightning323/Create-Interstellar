@@ -1,0 +1,44 @@
+{
+  "parent": "northstar:one_small_step",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "dimension": "northstar:mars"
+              },
+              "type_specific": {
+                "type": "northstar:on_ground"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.northstar.one_giant_leap.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "northstar:mars_sand"
+    },
+    "title": {
+      "translate": "advancement.northstar.one_giant_leap"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

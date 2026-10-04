@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:waxed_exposed_cut_copper"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 250,
+      "tag": "c:liquid_oxygen"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_weathered_cut_copper"
+    }
+  ]
+}

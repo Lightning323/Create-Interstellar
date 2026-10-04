@@ -1,0 +1,103 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createbigcannons"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:sturdy_sheet"
+  },
+  "loops": 2,
+  "results": [
+    {
+      "id": "northstar:titanium_ingot"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 250,
+          "tag": "northstar:compat_cbc_molten_cast_iron"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 250,
+          "tag": "c:titanium_tetrachloride"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:incomplete_titanium_ingot"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 1000,
+          "tag": "minecraft:water"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:incomplete_titanium_ingot"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:incomplete_titanium_ingot"
+  }
+}

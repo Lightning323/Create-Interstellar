@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "northstar:block/martian_steel_large_plating"
+  }
+}

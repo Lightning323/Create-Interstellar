@@ -1,0 +1,52 @@
+{
+  "type": "northstar:stone_cluster",
+  "config": {
+    "chance_of_dripstone_column_at_max_distance_from_center": 0.1,
+    "density": {
+      "type": "minecraft:uniform",
+      "max_exclusive": 0.4,
+      "min_inclusive": 0.2
+    },
+    "dripstone_block_layer_thickness": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 2,
+      "min_inclusive": 1
+    },
+    "floor_to_ceiling_search_range": 36,
+    "fluid_provider": {
+      "Name": "minecraft:lava",
+      "Properties": {
+        "falling": "true"
+      }
+    },
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 6,
+      "min_inclusive": 3
+    },
+    "height_deviation": 3,
+    "lavaness": {
+      "type": "minecraft:clamped_normal",
+      "deviation": 0.9,
+      "max": 0.3,
+      "mean": 0.1,
+      "min": 0.1
+    },
+    "max_distance_from_center_affecting_height_bias": 8,
+    "max_distance_from_edge_affecting_chance_of_dripstone_column": 3,
+    "max_stalagmite_stalactite_height_diff": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    },
+    "stone_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "northstar:venus_gravel"
+      }
+    },
+    "thirdthingness": 0.0,
+    "wetness": 0.0
+  }
+}

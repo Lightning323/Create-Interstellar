@@ -106,7 +106,7 @@ public class Northstar {
 
         NorthstarConfigs.register(container::registerConfig);
 
-        ModCompat.SABLE.executeIfLoaded(() -> NorthstarSable::init);
+        ModCompat.SABLE_COMPANION.executeIfLoaded(() -> NorthstarSable::init);
 
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NorthstarClient.clientInit(eventBus));
     }

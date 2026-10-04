@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:neptune",
+  "class": "moon",
+  "diameter": 416.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 1.122,
+    "inclination_deg": 28.844,
+    "radius": 7.8641493659E-4
+  },
+  "renderer": "northstar:solar_system/neptune/proteus_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 1.1208333333333333
+}

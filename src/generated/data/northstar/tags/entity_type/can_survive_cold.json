@@ -1,0 +1,23 @@
+{
+  "values": [
+    "northstar:mars_worm",
+    "northstar:mars_toad",
+    "northstar:mars_cobra",
+    "northstar:mars_moth",
+    "northstar:moon_lunargrade",
+    "northstar:moon_snail",
+    "northstar:moon_eel",
+    "northstar:frozen_zombie",
+    "northstar:mercury_raptor",
+    "northstar:mercury_roach",
+    "northstar:mercury_tortoise",
+    "minecraft:skeleton",
+    "minecraft:skeleton_horse",
+    "minecraft:snow_golem",
+    "minecraft:stray",
+    "minecraft:wither",
+    "minecraft:wither_skeleton",
+    "minecraft:zombie",
+    "minecraft:zombie_horse"
+  ]
+}

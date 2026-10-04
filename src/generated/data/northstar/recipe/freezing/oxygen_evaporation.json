@@ -1,0 +1,18 @@
+{
+  "type": "northstar:freezing",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:liquid_oxygen"
+    }
+  ],
+  "minTemperature": -185,
+  "processing_time": 20,
+  "results": [
+    {
+      "amount": 100,
+      "id": "northstar:oxygen"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:mars",
+  "class": "moon",
+  "diameter": 22.533,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 0.31875,
+    "inclination_deg": 26.283,
+    "radius": 6.267469E-5
+  },
+  "renderer": "northstar:solar_system/mars/phobos_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.31887499999999996
+}

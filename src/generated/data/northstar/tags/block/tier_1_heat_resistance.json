@@ -1,0 +1,9 @@
+{
+  "values": [
+    "northstar:titanium_sheetmetal",
+    "northstar:titanium_plating",
+    "northstar:titanium_pillar",
+    "minecraft:iron_block",
+    "create:industrial_iron_block"
+  ]
+}

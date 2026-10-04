@@ -1,0 +1,7 @@
+{
+  "parent": "northstar:block/multiface_single",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "0": "northstar:block/mars_roots"
+  }
+}

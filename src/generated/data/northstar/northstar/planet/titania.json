@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:uranus",
+  "class": "moon",
+  "diameter": 1576.8,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 8.654,
+    "inclination_deg": 82.57,
+    "radius": 0.00291387837
+  },
+  "renderer": "northstar:solar_system/uranus/titania_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -8.654
+}

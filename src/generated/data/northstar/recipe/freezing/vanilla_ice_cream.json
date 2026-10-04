@@ -1,0 +1,22 @@
+{
+  "type": "northstar:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 200,
+      "tag": "c:milk"
+    }
+  ],
+  "maxTemperature": -15,
+  "minTemperature": -25,
+  "processing_time": 100,
+  "results": [
+    {
+      "amount": 200,
+      "id": "northstar:vanilla_ice_cream"
+    }
+  ]
+}

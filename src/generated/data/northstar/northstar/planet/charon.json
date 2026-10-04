@@ -1,0 +1,15 @@
+{
+  "central_body": "northstar:pluto",
+  "class": "moon",
+  "diameter": 1212.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 223.046,
+    "duration_days": 6.387,
+    "inclination_deg": 0.08,
+    "radius": 1.30984485E-4
+  },
+  "renderer": "northstar:solar_system/pluto/charon_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 6.387
+}

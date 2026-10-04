@@ -1,0 +1,30 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "northstar:dry_plant_fiber"
+    },
+    {
+      "item": "northstar:dry_plant_fiber"
+    },
+    {
+      "item": "northstar:dry_plant_fiber"
+    },
+    {
+      "item": "northstar:dry_plant_fiber"
+    },
+    {
+      "item": "northstar:dry_plant_fiber"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    }
+  ],
+  "results": [
+    {
+      "amount": 20,
+      "id": "northstar:biofuel"
+    }
+  ]
+}

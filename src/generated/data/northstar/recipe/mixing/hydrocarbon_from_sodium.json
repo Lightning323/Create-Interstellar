@@ -1,0 +1,22 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 750,
+      "tag": "c:carbon"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:sodium"
+    }
+  ],
+  "results": [
+    {
+      "amount": 750,
+      "id": "northstar:hydrocarbon"
+    }
+  ]
+}

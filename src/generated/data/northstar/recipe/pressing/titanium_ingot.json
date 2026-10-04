@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "northstar:titanium_ingot"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:titanium_sheet"
+    }
+  ]
+}

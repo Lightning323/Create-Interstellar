@@ -1,0 +1,21 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "tag": "c:ingots/titanium"
+    },
+    {
+      "item": "northstar:raw_martian_iron_ore"
+    },
+    {
+      "item": "northstar:volcanic_ash_item"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "northstar:martian_steel_ingot"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "northstar:polished_lunar_sapphire"
+    }
+  },
+  "pattern": [
+    " S ",
+    "RSR",
+    "ISI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:lunar_sapphire_crystal"
+  }
+}

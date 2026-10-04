@@ -1,0 +1,19 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:lunar_sapphire_cluster"
+    }
+  ],
+  "processing_time": 150,
+  "results": [
+    {
+      "count": 3,
+      "id": "northstar:lunar_sapphire_shard"
+    },
+    {
+      "chance": 0.5,
+      "id": "northstar:lunar_sapphire_shard"
+    }
+  ]
+}

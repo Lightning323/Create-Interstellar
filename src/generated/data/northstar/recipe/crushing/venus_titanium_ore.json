@@ -1,0 +1,26 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:venus_titanium_ore"
+    }
+  ],
+  "processing_time": 350,
+  "results": [
+    {
+      "id": "northstar:raw_titanium_ore"
+    },
+    {
+      "chance": 0.75,
+      "id": "northstar:raw_titanium_ore"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "id": "northstar:venus_stone"
+    }
+  ]
+}

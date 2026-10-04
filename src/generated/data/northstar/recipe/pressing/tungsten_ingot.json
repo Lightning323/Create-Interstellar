@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "northstar:tungsten_ingot"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:tungsten_sheet"
+    }
+  ]
+}

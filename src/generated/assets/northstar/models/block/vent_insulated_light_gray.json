@@ -1,0 +1,6 @@
+{
+  "parent": "northstar:block/vent_insulated",
+  "textures": {
+    "wool": "minecraft:block/light_gray_wool"
+  }
+}

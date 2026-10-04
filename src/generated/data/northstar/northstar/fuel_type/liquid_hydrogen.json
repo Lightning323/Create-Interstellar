@@ -1,0 +1,6 @@
+{
+  "combustion_engine_rpm": 64.0,
+  "combustion_engine_use": 0.15625,
+  "fluids": "#c:liquid_hydrogen",
+  "gj_per_mb": 0.75
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "northstar:titanium_sheetmetal_vertical_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_titanium_sheetmetal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "northstar:titanium_sheetmetal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_titanium_sheetmetal"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "northstar:titanium_sheetmetal_vertical_slab"
+    ]
+  }
+}

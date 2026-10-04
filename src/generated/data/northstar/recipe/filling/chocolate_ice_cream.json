@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "northstar:ice_cream_cone"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 200,
+      "tag": "c:chocolate_ice_cream"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:chocolate_ice_cream"
+    }
+  ]
+}

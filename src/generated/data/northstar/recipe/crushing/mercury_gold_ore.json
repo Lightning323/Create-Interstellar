@@ -1,0 +1,26 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:mercury_gold_ore"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "id": "create:crushed_raw_gold"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:crushed_raw_gold"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "id": "northstar:mercury_stone"
+    }
+  ]
+}

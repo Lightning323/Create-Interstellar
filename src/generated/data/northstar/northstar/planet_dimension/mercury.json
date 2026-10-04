@@ -1,0 +1,32 @@
+{
+  "atmosphere": {
+    "composition": [],
+    "daytime_star_brightness": 1.0,
+    "pressure_pa": 0.0
+  },
+  "average_temperature": [
+    -200.0,
+    434.0
+  ],
+  "dimension": "northstar:mercury",
+  "dimension_above": "northstar:mercury_orbit",
+  "gravity": 3.7,
+  "heat_gradient": 2.0,
+  "heat_intercept": 100.0,
+  "name": "surface",
+  "planet": "northstar:mercury",
+  "sun_multiplier": {
+    "type": "northstar:arithmetic",
+    "a": {
+      "type": "northstar:light",
+      "mode": "sky_darken",
+      "normalize": true
+    },
+    "b": 8.0,
+    "mode": "mul"
+  },
+  "temperature": {
+    "type": "northstar:internal/mercury_temperature"
+  },
+  "wind_multiplier": 0.0
+}

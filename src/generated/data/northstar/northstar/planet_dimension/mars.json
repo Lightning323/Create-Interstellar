@@ -1,0 +1,43 @@
+{
+  "atmosphere": {
+    "composition": {
+      "breathable": true,
+      "collection_rate": 0.05,
+      "fluid": "northstar:carbon"
+    },
+    "daytime_star_brightness": 0.4,
+    "pressure_pa": 610.0
+  },
+  "average_temperature": -100.0,
+  "dimension": "northstar:mars",
+  "dimension_above": "northstar:mars_orbit",
+  "gravity": 3.71,
+  "heat_gradient": 0.05,
+  "heat_intercept": 50.0,
+  "name": "surface",
+  "planet": "northstar:mars",
+  "sun_multiplier": {
+    "type": "northstar:arithmetic",
+    "a": {
+      "type": "northstar:light",
+      "mode": "sky_darken",
+      "normalize": true
+    },
+    "b": 1.2,
+    "mode": "mul"
+  },
+  "temperature": -100.0,
+  "wind_multiplier": {
+    "type": "northstar:weather",
+    "entries": [
+      {
+        "key": "minecraft:clear",
+        "value": 0.0
+      },
+      {
+        "key": "minecraft:fallback",
+        "value": 1.0
+      }
+    ]
+  }
+}

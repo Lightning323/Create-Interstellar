@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:sol",
+  "class": "dwarf_planet",
+  "diameter": 946.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 80.3,
+    "duration_days": 1680.0,
+    "inclination_deg": 10.600000000000001,
+    "initial_mean_anomaly_deg": 73.3,
+    "radius": 2.77
+  },
+  "renderer": "northstar:solar_system/ceres_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.375
+}

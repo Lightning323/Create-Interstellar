@@ -1,0 +1,17 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 1000,
+      "tag": "c:biofuel"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "northstar:carbon"
+    }
+  ]
+}

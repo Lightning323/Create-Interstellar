@@ -1,0 +1,23 @@
+{
+  "values": [
+    "northstar:mars_copper_ore",
+    "northstar:mars_redstone_ore",
+    "northstar:mars_deep_copper_ore",
+    "northstar:mars_deep_redstone_ore",
+    "northstar:moon_copper_ore",
+    "northstar:moon_redstone_ore",
+    "northstar:moon_lapis_ore",
+    "northstar:moon_deep_copper_ore",
+    "northstar:moon_deep_redstone_ore",
+    "northstar:venus_copper_ore",
+    "northstar:venus_redstone_ore",
+    "northstar:venus_deep_copper_ore",
+    "northstar:venus_deep_redstone_ore",
+    "northstar:mercury_copper_ore",
+    "northstar:mercury_redstone_ore",
+    "northstar:mercury_lapis_ore",
+    "northstar:mercury_deep_copper_ore",
+    "northstar:mercury_deep_redstone_ore",
+    "northstar:mercury_deep_lapis_ore"
+  ]
+}

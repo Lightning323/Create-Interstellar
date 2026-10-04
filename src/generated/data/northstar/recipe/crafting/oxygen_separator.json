@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    },
+    "P": {
+      "item": "create:fluid_pipe"
+    }
+  },
+  "pattern": [
+    "III",
+    "PEP",
+    " P "
+  ],
+  "result": {
+    "count": 2,
+    "id": "northstar:oxygen_separator"
+  }
+}

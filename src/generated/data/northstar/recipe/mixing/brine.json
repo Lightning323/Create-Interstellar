@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "c:dusts/salt"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 500,
+      "tag": "minecraft:water"
+    }
+  ],
+  "results": [
+    {
+      "amount": 550,
+      "id": "northstar:brine"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "northstar:martian_strawberry"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 200,
+      "tag": "c:vanilla_ice_cream"
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "id": "northstar:strawberry_ice_cream"
+    }
+  ]
+}

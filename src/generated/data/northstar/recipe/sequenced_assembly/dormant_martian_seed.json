@@ -1,0 +1,113 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "northstar:dormant_martian_seed"
+  },
+  "loops": 2,
+  "results": [
+    {
+      "id": "northstar:mars_sprout_seeds"
+    },
+    {
+      "id": "northstar:mars_palm_seeds"
+    },
+    {
+      "id": "northstar:mars_tulip_seeds"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:dormant_martian_seed_sequenced"
+        },
+        {
+          "type": "neoforge:tag",
+          "amount": 500,
+          "tag": "minecraft:water"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:dormant_martian_seed_sequenced"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:dormant_martian_seed_sequenced"
+        },
+        {
+          "type": "neoforge:components",
+          "amount": 25,
+          "components": {
+            "create:potion_fluid_bottle_type": "regular",
+            "minecraft:potion_contents": {
+              "potion": "northstar:enhanced_healing"
+            }
+          },
+          "fluids": "create:potion"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:dormant_martian_seed_sequenced"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:dormant_martian_seed_sequenced"
+        },
+        {
+          "type": "neoforge:components",
+          "amount": 25,
+          "components": {
+            "create:potion_fluid_bottle_type": "regular",
+            "minecraft:potion_contents": {
+              "potion": "northstar:enhanced_strength"
+            }
+          },
+          "fluids": "create:potion"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:dormant_martian_seed_sequenced"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "northstar:dormant_martian_seed_sequenced"
+        },
+        {
+          "type": "neoforge:components",
+          "amount": 25,
+          "components": {
+            "create:potion_fluid_bottle_type": "regular",
+            "minecraft:potion_contents": {
+              "potion": "northstar:enhanced_regeneration"
+            }
+          },
+          "fluids": "create:potion"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:dormant_martian_seed_sequenced"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:dormant_martian_seed_sequenced"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "values": {
+    "northstar:biofuel_bucket": {
+      "burn_time": 1600
+    },
+    "northstar:hydrocarbon_bucket": {
+      "burn_time": 1600
+    },
+    "northstar:methane_bucket": {
+      "burn_time": 1600
+    }
+  }
+}

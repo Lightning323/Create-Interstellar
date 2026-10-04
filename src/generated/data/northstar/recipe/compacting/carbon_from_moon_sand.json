@@ -1,0 +1,15 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "northstar:moon_sand"
+    }
+  ],
+  "results": [
+    {
+      "amount": 100,
+      "id": "northstar:carbon"
+    }
+  ]
+}

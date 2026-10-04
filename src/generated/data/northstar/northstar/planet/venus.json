@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:sol",
+  "diameter": 12104.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 76.68069,
+    "duration_days": 224.7,
+    "inclination_deg": 3.39471,
+    "initial_mean_anomaly_deg": 50.37663,
+    "radius": 0.72333199
+  },
+  "renderer": "northstar:solar_system/venus_sky",
+  "required_science": 6.0,
+  "rotation_period_days": -224.701,
+  "texture": "northstar:solar_system/venus"
+}

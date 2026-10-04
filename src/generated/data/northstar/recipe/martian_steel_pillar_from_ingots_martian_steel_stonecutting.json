@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "c:ingots/martian_steel"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:martian_steel_pillar"
+  }
+}

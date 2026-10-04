@@ -1,0 +1,36 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "northstar:oxygen_separator"
+    },
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "F": {
+      "item": "create:fluid_tank"
+    },
+    "P": {
+      "item": "create:encased_fan"
+    },
+    "S": {
+      "item": "create:shaft"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TPT",
+    "T#T",
+    "CFC",
+    "TST"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:oxygen_sealer"
+  },
+  "show_notification": false
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "tag": "c:dusts/salt"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 500,
+      "tag": "minecraft:lava"
+    }
+  ],
+  "results": [
+    {
+      "id": "northstar:sodium_catalyst"
+    }
+  ]
+}

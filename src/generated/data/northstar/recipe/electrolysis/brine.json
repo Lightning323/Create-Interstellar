@@ -1,0 +1,20 @@
+{
+  "type": "northstar:electrolysis",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 10,
+      "tag": "c:brine"
+    }
+  ],
+  "results": [
+    {
+      "amount": 2,
+      "id": "northstar:chlorine"
+    },
+    {
+      "amount": 2,
+      "id": "northstar:sodium"
+    }
+  ]
+}

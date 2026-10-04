@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_martian_steel_sheetmetal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "northstar:martian_steel_sheetmetal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "northstar:martian_steel_sheetmetal_slab_from_martian_steel_sheetmetal_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_martian_steel_sheetmetal"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "northstar:martian_steel_sheetmetal_slab_from_martian_steel_sheetmetal_stonecutting"
+    ]
+  }
+}

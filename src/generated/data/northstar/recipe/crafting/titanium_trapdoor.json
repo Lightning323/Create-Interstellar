@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TGT",
+    "TGT"
+  ],
+  "result": {
+    "count": 2,
+    "id": "northstar:titanium_trapdoor"
+  }
+}

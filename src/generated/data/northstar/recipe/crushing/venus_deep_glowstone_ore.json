@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:venus_deep_glowstone_ore"
+    }
+  ],
+  "processing_time": 350,
+  "results": [
+    {
+      "count": 2,
+      "id": "northstar:raw_glowstone_ore"
+    },
+    {
+      "chance": 0.25,
+      "id": "northstar:raw_glowstone_ore"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "id": "northstar:venus_deep_stone"
+    }
+  ]
+}

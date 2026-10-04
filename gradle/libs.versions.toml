@@ -4,11 +4,13 @@ mixinextras = "0.5.0"
 ponder = "1.0.82+mc1.21.1"
 
 [libraries]
-aeronautics = "maven.modrinth:create-aeronautics:1.3.0+mc1.21.1"
+aeronautics = "maven.modrinth:create-aeronautics:1.3.2+mc1.21.1"
 cdg = "maven.modrinth:create-diesel-generators:1.21.1-1.3.7"
 cca = "maven.modrinth:createaddition:neoforge-1.21.1-1.5.8"
 create = "com.simibubi.create:create-1.21.1:6.0.10-280"
 copycats = "maven.modrinth:copycats:3.0.4+mc.1.21.1-neoforge"
+create-kinetic = "maven.modrinth:create-kinetic:1.2.7.1"
+creative-mode-tweaks = "maven.modrinth:creative-mode-tweaks:2.2.6"
 flywheel-neoforge-api = { module = "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1", version.ref = "flywheel" }
 flywheel-neoforge = { module = "dev.engine-room.flywheel:flywheel-neoforge-1.21.1", version.ref = "flywheel" }
 geckolib-neoforge = "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.2"

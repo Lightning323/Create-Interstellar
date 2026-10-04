@@ -1,0 +1,15 @@
+{
+  "class": "star",
+  "diameter": 1391400.0,
+  "orbit": {
+    "type": "northstar:fixed",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "renderer": "northstar:solar_system/sun",
+  "required_science": -1.0,
+  "rotation_period_days": 24.47
+}

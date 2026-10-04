@@ -8,12 +8,15 @@ public enum ModCompat implements Mod {
     CBC("createbigcannons"),
     CDG("createdieselgenerators"),
     COPYCATS("copycats"),
+    CREATE_KINETIC("createkinetic"),
+    CREATIVE_MODE_TWEAKS("creative_mode_tweaks"),
     JEI("justenoughitems"),
     KJS("kubejs"),
     KJS_CREATE("kubejs_create"),
     MEK("mekanism"),
     OCULUS("iris"),
     SABLE("sable"),
+    SABLE_COMPANION("sablecompanion"),
     TFMG("tfmg"),
     TFMG_CE("tfmg");
 

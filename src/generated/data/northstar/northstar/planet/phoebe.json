@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 216.6,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 269.351,
+    "duration_days": 546.04,
+    "inclination_deg": 178.51,
+    "initial_mean_anomaly_deg": 180.0,
+    "radius": 0.086
+  },
+  "renderer": "northstar:solar_system/saturn/phoebe_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.38641666666666663
+}

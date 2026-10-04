@@ -1,0 +1,15 @@
+{
+  "central_body": "northstar:neptune",
+  "class": "moon",
+  "diameter": 2710.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 177.709,
+    "duration_days": 5.877,
+    "inclination_deg": 129.608,
+    "radius": 0.0023714174429
+  },
+  "renderer": "northstar:solar_system/neptune/triton_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 5.877
+}

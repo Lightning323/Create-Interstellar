@@ -1,0 +1,31 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "northstar:sodium_catalyst"
+    },
+    {
+      "item": "northstar:sodium_catalyst"
+    },
+    {
+      "item": "northstar:sodium_catalyst"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 500,
+      "tag": "c:carbon"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 500,
+      "tag": "minecraft:water"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "northstar:hydrocarbon"
+    }
+  ]
+}

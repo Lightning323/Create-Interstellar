@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:waxed_exposed_copper"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:sodium"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_copper_block"
+    }
+  ]
+}

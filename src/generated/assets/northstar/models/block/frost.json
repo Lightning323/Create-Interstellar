@@ -1,0 +1,7 @@
+{
+  "parent": "northstar:block/multiface_single",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "0": "northstar:block/frost"
+  }
+}

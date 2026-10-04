@@ -1,0 +1,90 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave_extra_underground",
+      "minecraft:cave"
+    ]
+  },
+  "downfall": 0.4,
+  "effects": {
+    "fog_color": 15328214,
+    "sky_color": 14331548,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [
+      "minecraft:lake_lava_underground"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "northstar:mars_blob_andesite",
+      "northstar:mars_blob_granite",
+      "northstar:mars_blob_basalt",
+      "northstar:mars_blob_crimsite",
+      "northstar:mars_blob_mars_soil",
+      "northstar:mars_blob_volcanic_ash",
+      "northstar:mars_ore_titanium",
+      "northstar:mars_ore_copper_large",
+      "northstar:mars_ore_copper",
+      "northstar:mars_ore_zinc",
+      "northstar:mars_ore_iron_large",
+      "northstar:mars_ore_iron",
+      "northstar:mars_ore_iron_small",
+      "northstar:mars_ore_diamond",
+      "northstar:mars_ore_gold",
+      "northstar:mars_ore_quartz",
+      "northstar:mars_ore_redstone"
+    ],
+    [
+      "northstar:mars_worm_nest"
+    ],
+    [],
+    [
+      "northstar:mars_roots"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "northstar:mars_worm",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 40
+      },
+      {
+        "type": "northstar:mars_cobra",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 20
+      },
+      {
+        "type": "northstar:mars_toad",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 20
+      },
+      {
+        "type": "northstar:mars_moth",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 20
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8,
+  "temperature_modifier": "frozen"
+}

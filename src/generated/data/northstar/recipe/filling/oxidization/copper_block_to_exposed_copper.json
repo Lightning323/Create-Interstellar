@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_block"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 250,
+      "tag": "c:liquid_oxygen"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:exposed_copper"
+    }
+  ]
+}

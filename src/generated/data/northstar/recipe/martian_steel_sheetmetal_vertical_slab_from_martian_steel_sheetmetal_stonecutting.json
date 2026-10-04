@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "northstar:martian_steel_sheetmetal"
+  },
+  "result": {
+    "count": 2,
+    "id": "northstar:martian_steel_sheetmetal_vertical_slab"
+  }
+}

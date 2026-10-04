@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:jupiter",
+  "class": "moon",
+  "diameter": 4806.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 16.6890184,
+    "inclination_deg": 2.017,
+    "radius": 0.01258507218
+  },
+  "renderer": "northstar:solar_system/jupiter/callisto_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -16.6890184
+}

@@ -1,0 +1,6 @@
+{
+  "combustion_engine_rpm": 32.0,
+  "combustion_engine_use": 0.15625,
+  "fluids": "#c:biofuel",
+  "gj_per_mb": 0.25
+}

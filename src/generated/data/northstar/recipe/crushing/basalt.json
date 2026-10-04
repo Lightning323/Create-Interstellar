@@ -1,0 +1,23 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:basalt"
+    }
+  ],
+  "processing_time": 1000,
+  "results": [
+    {
+      "count": 2,
+      "id": "northstar:salt"
+    },
+    {
+      "chance": 0.75,
+      "id": "northstar:salt"
+    },
+    {
+      "chance": 0.25,
+      "id": "northstar:salt"
+    }
+  ]
+}

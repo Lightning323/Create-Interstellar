@@ -1,0 +1,16 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "create:limestone"
+    }
+  ],
+  "processing_time": 800,
+  "results": [
+    {
+      "chance": 0.5,
+      "count": 2,
+      "id": "northstar:rutile_concentrate"
+    }
+  ]
+}

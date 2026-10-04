@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:mars_deep_iron_ore"
+    }
+  ],
+  "processing_time": 350,
+  "results": [
+    {
+      "count": 2,
+      "id": "northstar:raw_martian_iron_ore"
+    },
+    {
+      "chance": 0.25,
+      "id": "northstar:raw_martian_iron_ore"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "id": "northstar:mars_deep_stone"
+    }
+  ]
+}

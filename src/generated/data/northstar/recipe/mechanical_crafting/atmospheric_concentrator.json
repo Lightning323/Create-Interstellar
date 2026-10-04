@@ -1,0 +1,39 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "northstar:oxygen_separator"
+    },
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "F": {
+      "item": "create:fluid_tank"
+    },
+    "P": {
+      "item": "create:propeller"
+    },
+    "S": {
+      "item": "create:shaft"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "W W",
+    "WPW",
+    "T#T",
+    "CFC",
+    "TST"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:atmospheric_concentrator"
+  }
+}

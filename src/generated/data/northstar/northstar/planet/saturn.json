@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:sol",
+  "class": "gas_giant",
+  "diameter": 120500.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 113.71504,
+    "duration_days": 10755.699,
+    "inclination_deg": 2.486,
+    "initial_mean_anomaly_deg": 49.94435000000001,
+    "radius": 5.95
+  },
+  "renderer": "northstar:solar_system/saturn_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 0.444
+}

@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,oxygen_deprived=false,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall"
+    },
+    "facing=east,oxygen_deprived=false,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall"
+    },
+    "facing=east,oxygen_deprived=true,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall"
+    },
+    "facing=east,oxygen_deprived=true,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall"
+    },
+    "facing=north,oxygen_deprived=false,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 270
+    },
+    "facing=north,oxygen_deprived=false,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 270
+    },
+    "facing=north,oxygen_deprived=true,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 270
+    },
+    "facing=north,oxygen_deprived=true,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 270
+    },
+    "facing=south,oxygen_deprived=false,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 90
+    },
+    "facing=south,oxygen_deprived=false,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 90
+    },
+    "facing=south,oxygen_deprived=true,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 90
+    },
+    "facing=south,oxygen_deprived=true,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 90
+    },
+    "facing=west,oxygen_deprived=false,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 180
+    },
+    "facing=west,oxygen_deprived=false,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 180
+    },
+    "facing=west,oxygen_deprived=true,waterlogged=false": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 180
+    },
+    "facing=west,oxygen_deprived=true,waterlogged=true": {
+      "model": "northstar:block/extinguished_torch_wall",
+      "y": 180
+    }
+  }
+}

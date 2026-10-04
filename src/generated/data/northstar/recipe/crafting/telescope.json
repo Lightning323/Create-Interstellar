@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "B": {
+      "tag": "c:ingots/brass"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "ABB",
+    " S ",
+    "S S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:telescope"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "northstar:crater",
+  "config": {
+    "air_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:air"
+      }
+    },
+    "block_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "northstar:moon_sand"
+      }
+    },
+    "can_delete": "#northstar:natural_moon_blocks",
+    "depth": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 6,
+      "min_inclusive": 3
+    },
+    "half_height": 2,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 24,
+      "min_inclusive": 12
+    }
+  }
+}

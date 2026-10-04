@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "northstar:rocket_combustion_chamber"
+    },
+    "P": {
+      "item": "create:propeller"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TCT",
+    "TPT",
+    "T T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:rocket_thruster"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "values": [
+    "northstar:mars_soil",
+    "northstar:mars_roots",
+    "northstar:mars_stone",
+    "northstar:mars_deep_stone",
+    "northstar:mars_titanium_ore",
+    "northstar:mars_iron_ore",
+    "northstar:mars_zinc_ore",
+    "northstar:mars_copper_ore",
+    "northstar:mars_gold_ore",
+    "northstar:mars_diamond_ore",
+    "northstar:mars_redstone_ore",
+    "northstar:mars_quartz_ore",
+    "northstar:mars_deep_titanium_ore",
+    "northstar:mars_deep_zinc_ore",
+    "northstar:mars_deep_iron_ore",
+    "northstar:mars_deep_copper_ore",
+    "northstar:mars_deep_gold_ore",
+    "northstar:mars_deep_diamond_ore",
+    "northstar:mars_deep_redstone_ore",
+    "northstar:mars_deep_quartz_ore",
+    "northstar:volcanic_ash",
+    "minecraft:andesite",
+    "minecraft:basalt",
+    "create:crimsite"
+  ]
+}

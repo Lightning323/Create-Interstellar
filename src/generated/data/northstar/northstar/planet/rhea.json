@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 1529.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 4.518,
+    "inclination_deg": 27.075,
+    "radius": 0.0035232453345
+  },
+  "renderer": "northstar:solar_system/saturn/rhea_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 4.52
+}

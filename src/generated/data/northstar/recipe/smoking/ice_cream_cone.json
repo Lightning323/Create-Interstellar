@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.4,
+  "ingredient": {
+    "item": "northstar:raw_ice_cream_cone"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:ice_cream_cone"
+  }
+}

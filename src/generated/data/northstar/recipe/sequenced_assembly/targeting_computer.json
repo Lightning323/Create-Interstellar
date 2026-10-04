@@ -1,0 +1,93 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "c:plates/iron"
+  },
+  "loops": 2,
+  "results": [
+    {
+      "id": "northstar:targeting_computer"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_targeting_computer"
+        },
+        {
+          "item": "northstar:polished_diamond"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_targeting_computer"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_targeting_computer"
+        },
+        {
+          "item": "northstar:hardened_precision_mechanism"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_targeting_computer"
+        }
+      ]
+    },
+    {
+      "type": "northstar:engraving",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_targeting_computer"
+        }
+      ],
+      "processing_time": 50,
+      "results": [
+        {
+          "id": "northstar:unfinished_targeting_computer"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_targeting_computer"
+        },
+        {
+          "item": "northstar:circuit"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_targeting_computer"
+        }
+      ]
+    },
+    {
+      "type": "northstar:engraving",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_targeting_computer"
+        }
+      ],
+      "processing_time": 50,
+      "results": [
+        {
+          "id": "northstar:unfinished_targeting_computer"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:unfinished_targeting_computer"
+  }
+}

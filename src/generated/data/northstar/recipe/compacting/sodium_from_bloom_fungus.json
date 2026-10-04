@@ -1,0 +1,21 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "northstar:bloom_fungus_block"
+    },
+    {
+      "item": "northstar:bloom_fungus_block"
+    },
+    {
+      "item": "northstar:bloom_fungus_block"
+    }
+  ],
+  "results": [
+    {
+      "amount": 1000,
+      "id": "northstar:sodium"
+    }
+  ]
+}

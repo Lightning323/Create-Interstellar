@@ -1,0 +1,21 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 200,
+      "tag": "c:vanilla_ice_cream"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 50,
+      "fluid": "create:chocolate"
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "id": "northstar:chocolate_ice_cream"
+    }
+  ]
+}

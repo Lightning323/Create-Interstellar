@@ -1,0 +1,33 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "northstar:amethyst_crystal"
+    },
+    "M": {
+      "item": "create:precision_mechanism"
+    },
+    "Q": {
+      "item": "create:polished_rose_quartz"
+    },
+    "S": {
+      "item": "create:shaft"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TST",
+    "QQQ",
+    "TMT",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:circuit_engraver"
+  },
+  "show_notification": false
+}

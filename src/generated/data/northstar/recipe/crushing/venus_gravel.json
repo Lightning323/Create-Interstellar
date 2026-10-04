@@ -1,0 +1,22 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:venus_gravel"
+    }
+  ],
+  "processing_time": 500,
+  "results": [
+    {
+      "id": "northstar:rutile_concentrate"
+    },
+    {
+      "chance": 0.5,
+      "id": "northstar:rutile_concentrate"
+    },
+    {
+      "chance": 0.25,
+      "id": "northstar:rutile_concentrate"
+    }
+  ]
+}

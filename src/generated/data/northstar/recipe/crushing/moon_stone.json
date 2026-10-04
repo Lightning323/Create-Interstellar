@@ -1,0 +1,14 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:moon_stone"
+    }
+  ],
+  "processing_time": 500,
+  "results": [
+    {
+      "id": "northstar:moon_sand"
+    }
+  ]
+}

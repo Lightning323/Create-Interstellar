@@ -1,0 +1,89 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave_extra_underground",
+      "minecraft:cave"
+    ]
+  },
+  "downfall": 0.4,
+  "effects": {
+    "fog_color": 14538752,
+    "sky_color": 14543991,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [
+      "minecraft:lake_lava_underground",
+      "northstar:venus_lava_lake_surface",
+      "northstar:venus_sulfuric_acid_lake",
+      "northstar:venus_sulfuric_acid_lake_surface"
+    ],
+    [],
+    [],
+    [
+      "northstar:venus_surface_fossil",
+      "northstar:venus_plumes",
+      "northstar:venus_rib_cages_surface"
+    ],
+    [],
+    [
+      "northstar:venus_ore_copper",
+      "northstar:venus_ore_zinc",
+      "northstar:venus_ore_diamond",
+      "northstar:venus_ore_glowstone",
+      "northstar:venus_ore_gold",
+      "northstar:venus_ore_titanium",
+      "northstar:venus_ore_iron",
+      "northstar:venus_ore_quartz",
+      "northstar:venus_ore_redstone",
+      "northstar:venus_blob_scoria",
+      "northstar:venus_blob_scorchia",
+      "northstar:venus_blob_tuff",
+      "northstar:venus_blob_gravel"
+    ],
+    [
+      "northstar:venus_gravel_cluster",
+      "northstar:venus_basalt_pillars"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "northstar:venus_scorpion",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 30
+      },
+      {
+        "type": "northstar:venus_vulture",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 30
+      },
+      {
+        "type": "northstar:venus_stone_bull",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 30
+      },
+      {
+        "type": "northstar:venus_mimic",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 40
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

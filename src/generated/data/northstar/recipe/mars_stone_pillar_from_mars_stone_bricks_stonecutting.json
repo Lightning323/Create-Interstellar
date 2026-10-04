@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "northstar:mars_stone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:mars_stone_pillar"
+  }
+}

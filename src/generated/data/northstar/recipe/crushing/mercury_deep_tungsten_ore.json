@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "northstar:mercury_deep_tungsten_ore"
+    }
+  ],
+  "processing_time": 550,
+  "results": [
+    {
+      "count": 2,
+      "id": "northstar:crushed_raw_tungsten"
+    },
+    {
+      "chance": 0.25,
+      "id": "northstar:crushed_raw_tungsten"
+    },
+    {
+      "chance": 0.75,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "id": "northstar:mercury_deep_stone"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "northstar:wilter_stairs_from_wilter_planks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wilter_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "northstar:wilter_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wilter_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "northstar:wilter_stairs_from_wilter_planks_stonecutting"
+    ]
+  }
+}

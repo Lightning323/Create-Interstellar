@@ -1,0 +1,14 @@
+{
+  "values": [
+    "northstar:martian_steel_sheetmetal_slab",
+    "northstar:martian_steel_plating_slab",
+    "northstar:titanium_sheetmetal_slab",
+    "northstar:titanium_plating_slab",
+    "northstar:tungsten_sheetmetal_slab",
+    "northstar:tungsten_plating_slab",
+    "northstar:mars_stone_brick_slab",
+    "northstar:moon_stone_brick_slab",
+    "northstar:venus_stone_brick_slab",
+    "northstar:mercury_stone_brick_slab"
+  ]
+}

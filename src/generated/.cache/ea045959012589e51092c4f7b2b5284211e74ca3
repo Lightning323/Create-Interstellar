@@ -1,0 +1,4 @@
+// 1.21.1	2026-10-02T23:08:59.175756292	Tags for minecraft:damage_type mod id northstar
+cb8a36c1976ec7b4abe333f53648ed1d3e391c28 data/minecraft/tags/damage_type/bypasses_armor.json
+cb8a36c1976ec7b4abe333f53648ed1d3e391c28 data/minecraft/tags/damage_type/bypasses_enchantments.json
+c2cb28a380b1b7d7eaa3b58aca0e659654f7f26d data/minecraft/tags/damage_type/no_knockback.json

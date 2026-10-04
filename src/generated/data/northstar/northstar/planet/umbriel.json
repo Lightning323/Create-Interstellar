@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:uranus",
+  "class": "moon",
+  "diameter": 1169.4,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 4.145,
+    "inclination_deg": 82.358,
+    "radius": 0.00177810017
+  },
+  "renderer": "northstar:solar_system/uranus/umbriel_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -4.145
+}

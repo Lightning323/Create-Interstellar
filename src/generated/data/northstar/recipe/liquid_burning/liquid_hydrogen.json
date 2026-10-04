@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createaddition"
+    }
+  ],
+  "type": "createaddition:liquid_burning",
+  "burn_time": 3200,
+  "ingredients": [
+    {
+      "type": "neoforge:single",
+      "amount": 1000,
+      "fluid": "northstar:liquid_hydrogen"
+    }
+  ],
+  "results": [],
+  "superheated": true
+}

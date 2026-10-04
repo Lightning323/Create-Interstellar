@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#c:oxygen",
+    "#northstar:is_oxy",
+    {
+      "id": "tfmg:flowing_air",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 504.2,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 1.371,
+    "inclination_deg": 26.739000000000004,
+    "radius": 0.00159119912
+  },
+  "renderer": "northstar:solar_system/saturn/enceladus_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -1.371
+}

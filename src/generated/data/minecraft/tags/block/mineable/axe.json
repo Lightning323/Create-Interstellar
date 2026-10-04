@@ -1,0 +1,33 @@
+{
+  "values": [
+    "northstar:stripped_wilter_log",
+    "northstar:wilter_log",
+    "northstar:wilter_planks",
+    "northstar:wilter_slab",
+    "northstar:wilter_stairs",
+    "northstar:stripped_argyre_log",
+    "northstar:argyre_log",
+    "northstar:argyre_sapling",
+    "northstar:argyre_planks",
+    "northstar:argyre_slab",
+    "northstar:argyre_stairs",
+    "northstar:stripped_coiler_log",
+    "northstar:coiler_log",
+    "northstar:coiler_planks",
+    "northstar:coiler_slab",
+    "northstar:coiler_stairs",
+    "northstar:spike_fungus_block",
+    "northstar:bloom_fungus_block",
+    "northstar:bloom_fungus_stem_block",
+    "northstar:plate_fungus_stem_block",
+    "northstar:plate_fungus_cap_block",
+    "northstar:tower_fungus",
+    "northstar:tower_fungus_stem_block",
+    "northstar:tower_fungus_cap_block",
+    "northstar:calorian_log",
+    "northstar:calorian_planks",
+    "northstar:calorian_slab",
+    "northstar:calorian_stairs",
+    "northstar:astronomy_table"
+  ]
+}

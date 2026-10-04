@@ -1,0 +1,42 @@
+{
+  "atmosphere": {
+    "composition": {
+      "breathable": true,
+      "fluid": "northstar:carbon"
+    },
+    "daytime_star_brightness": 0.0,
+    "pressure_pa": 9199996.0
+  },
+  "average_temperature": 464.0,
+  "dimension": "northstar:venus",
+  "dimension_above": "northstar:venus_orbit",
+  "gravity": 8.87,
+  "heat_gradient": 5.0,
+  "heat_intercept": 250.0,
+  "name": "surface",
+  "planet": "northstar:venus",
+  "sun_multiplier": {
+    "type": "northstar:arithmetic",
+    "a": {
+      "type": "northstar:light",
+      "mode": "sky_darken",
+      "normalize": true
+    },
+    "b": 0.6,
+    "mode": "mul"
+  },
+  "temperature": 464.0,
+  "wind_multiplier": {
+    "type": "northstar:weather",
+    "entries": [
+      {
+        "key": "minecraft:fallback",
+        "value": 0.7
+      },
+      {
+        "key": "minecraft:clear",
+        "value": 0.4
+      }
+    ]
+  }
+}

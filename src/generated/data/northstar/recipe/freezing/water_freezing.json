@@ -1,0 +1,17 @@
+{
+  "type": "northstar:freezing",
+  "ingredients": [
+    {
+      "type": "neoforge:tag",
+      "amount": 1000,
+      "tag": "minecraft:water"
+    }
+  ],
+  "maxTemperature": 0,
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "minecraft:ice"
+    }
+  ]
+}

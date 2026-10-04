@@ -1,0 +1,88 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "c:plates/iron"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 70.0,
+      "id": "northstar:circuit"
+    },
+    {
+      "chance": 20.0,
+      "id": "minecraft:iron_nugget"
+    },
+    {
+      "chance": 10.0,
+      "id": "create:copper_nugget"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_circuit"
+        },
+        {
+          "item": "northstar:polished_amethyst"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_circuit"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_circuit"
+        },
+        {
+          "tag": "c:plates/copper"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_circuit"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_circuit"
+        },
+        {
+          "tag": "c:plates/gold"
+        }
+      ],
+      "results": [
+        {
+          "id": "northstar:unfinished_circuit"
+        }
+      ]
+    },
+    {
+      "type": "northstar:engraving",
+      "ingredients": [
+        {
+          "item": "northstar:unfinished_circuit"
+        }
+      ],
+      "processing_time": 100,
+      "results": [
+        {
+          "id": "northstar:unfinished_circuit"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "northstar:unfinished_circuit"
+  }
+}

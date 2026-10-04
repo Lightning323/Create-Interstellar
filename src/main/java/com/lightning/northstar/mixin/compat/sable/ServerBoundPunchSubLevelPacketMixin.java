@@ -1,10 +1,11 @@
 package com.lightning.northstar.mixin.compat.sable;
 
 import com.lightning.northstar.accessor.MissingMixinException;
+import com.lightning.northstar.api.WhenModLoaded;
+import com.lightning.northstar.data.ModCompat;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.ryanhcode.sable.SableConfig;
-import dev.ryanhcode.sable.companion.math.JOMLConversion;
 import dev.ryanhcode.sable.index.SableAttributes;
 import dev.ryanhcode.sable.network.packets.tcp.ServerboundPunchSubLevelPacket;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -12,6 +13,7 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3d;
 import org.joml.Vector3dc;
 import org.spongepowered.asm.mixin.Final;
@@ -23,6 +25,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
 @Mixin(ServerboundPunchSubLevelPacket.class)
+@WhenModLoaded(ModCompat.SABLE)
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class ServerBoundPunchSubLevelPacketMixin {
@@ -81,7 +84,7 @@ public class ServerBoundPunchSubLevelPacketMixin {
                 .normalize()
                 .mul(-Objects.requireNonNull(player.getAttribute(SableAttributes.PUNCH_STRENGTH)).getValue() * original * 0.01);
 
-        player.setDeltaMovement(player.getDeltaMovement().add(JOMLConversion.toMojang(dir)));
+        player.setDeltaMovement(player.getDeltaMovement().add(new Vec3(dir.x, dir.y, dir.z)));
         ((ServerPlayer) player).connection.send(new ClientboundSetEntityMotionPacket(player));
 
         return original;

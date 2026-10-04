@@ -1,0 +1,87 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave_extra_underground",
+      "minecraft:cave"
+    ]
+  },
+  "downfall": 0.4,
+  "effects": {
+    "fog_color": 0,
+    "sky_color": 0,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [
+      "northstar:mercury_crater",
+      "northstar:mercury_crater_big"
+    ],
+    [
+      "minecraft:lake_lava_underground"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "northstar:mercury_ore_zinc",
+      "northstar:mercury_ore_titanium",
+      "northstar:mercury_ore_tungsten",
+      "northstar:mercury_ore_tungsten_buried",
+      "northstar:mercury_ore_tungsten_small",
+      "northstar:mercury_ore_iron",
+      "northstar:mercury_ore_diamond",
+      "northstar:mercury_ore_copper",
+      "northstar:mercury_ore_gold",
+      "northstar:mercury_ore_lapis",
+      "northstar:mercury_ore_redstone",
+      "northstar:mercury_ore_redstone_large",
+      "northstar:mercury_blob_andesite",
+      "northstar:mercury_blob_blackstone",
+      "northstar:mercury_blob_scorchia",
+      "northstar:mercury_blob_scoria",
+      "northstar:mercury_ore_glowstone"
+    ],
+    [],
+    [],
+    [
+      "northstar:calorian_vines",
+      "northstar:mercury_cactus",
+      "northstar:mercury_small_shelves",
+      "northstar:mercury_large_shelves"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "northstar:mercury_raptor",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 30
+      },
+      {
+        "type": "northstar:mercury_tortoise",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 30
+      },
+      {
+        "type": "northstar:mercury_roach",
+        "maxCount": 5,
+        "minCount": 2,
+        "weight": 30
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

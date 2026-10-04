@@ -1,0 +1,16 @@
+{
+  "central_body": "northstar:sol",
+  "diameter": 6779.0,
+  "orbit": {
+    "type": "northstar:simple",
+    "ascending_node_deg": 49.57854,
+    "duration_days": 686.93,
+    "inclination_deg": 1.85061,
+    "initial_mean_anomaly_deg": 19.3902,
+    "radius": 1.52366231
+  },
+  "renderer": "northstar:solar_system/mars_sky",
+  "required_science": 5.0,
+  "rotation_period_days": 1.0259541,
+  "texture": "northstar:solar_system/mars"
+}

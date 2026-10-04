@@ -1,0 +1,8 @@
+{
+  "dimension": "minecraft:overworld",
+  "dimension_above": "northstar:earth_orbit",
+  "heat_gradient": 0.4,
+  "heat_intercept": 100.0,
+  "name": "surface",
+  "planet": "northstar:earth"
+}

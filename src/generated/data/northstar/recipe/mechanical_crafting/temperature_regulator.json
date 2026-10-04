@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "C": {
+      "item": "northstar:advanced_circuit"
+    },
+    "I": {
+      "item": "minecraft:blue_ice"
+    },
+    "L": {
+      "item": "create:shaft"
+    },
+    "S": {
+      "tag": "c:plates/titanium"
+    },
+    "T": {
+      "tag": "c:ingots/titanium"
+    }
+  },
+  "pattern": [
+    "ITB",
+    "ITB",
+    "SLS",
+    "CCC",
+    "SLS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:temperature_regulator"
+  },
+  "show_notification": false
+}

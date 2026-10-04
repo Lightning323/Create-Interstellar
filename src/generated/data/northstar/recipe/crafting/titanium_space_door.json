@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "GG ",
+    "TTC",
+    "TT "
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:titanium_space_door"
+  }
+}

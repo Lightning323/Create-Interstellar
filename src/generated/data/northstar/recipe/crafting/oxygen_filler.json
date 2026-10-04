@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "northstar:circuit"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    },
+    "S": {
+      "item": "northstar:oxygen_separator"
+    },
+    "T": {
+      "tag": "c:plates/titanium"
+    }
+  },
+  "pattern": [
+    "TCT",
+    "TST",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:oxygen_filler"
+  }
+}

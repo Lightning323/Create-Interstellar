@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "northstar:tungsten_plating"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:tungsten_plating_stairs"
+  }
+}

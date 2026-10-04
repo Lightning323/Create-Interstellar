@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:plates/martian_steel"
+    },
+    "C": {
+      "item": "minecraft:sea_lantern"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "result": {
+    "count": 4,
+    "id": "northstar:martian_steel_blue_lamp"
+  }
+}

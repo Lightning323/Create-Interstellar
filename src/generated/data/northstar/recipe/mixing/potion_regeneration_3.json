@@ -1,0 +1,31 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "northstar:enriched_glowstone_ore"
+    },
+    {
+      "type": "neoforge:components",
+      "amount": 50,
+      "components": {
+        "create:potion_fluid_bottle_type": "regular",
+        "minecraft:potion_contents": {
+          "potion": "minecraft:strong_regeneration"
+        }
+      },
+      "fluids": "create:potion"
+    }
+  ],
+  "results": [
+    {
+      "amount": 50,
+      "components": {
+        "create:potion_fluid_bottle_type": "regular",
+        "minecraft:potion_contents": {
+          "potion": "northstar:enhanced_regeneration"
+        }
+      },
+      "id": "create:potion"
+    }
+  ]
+}

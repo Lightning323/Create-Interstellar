@@ -1,0 +1,33 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.northstar.frostbite"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "northstar:frostbite"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "exclusive_set": "minecraft:fire_aspect",
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 0,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand",
+    "offhand"
+  ],
+  "supported_items": "#minecraft:swords",
+  "weight": 10
+}

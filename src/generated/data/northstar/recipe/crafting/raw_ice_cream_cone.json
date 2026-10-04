@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "northstar:flattened_dough"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "northstar:raw_ice_cream_cone"
+  }
+}

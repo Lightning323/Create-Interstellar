@@ -1,0 +1,12 @@
+// 1.21.1	2026-10-02T23:08:59.176556975	northstar's processing recipes: mixing
+1dec11ab308d49c3401880d600251fa417bf7b8a data/northstar/recipe/mixing/brine.json
+95fae54fd3bbdab63e5fba7735288ef04029bf40 data/northstar/recipe/mixing/chocolate_ice_cream.json
+0792bff473b6f43fa29823890902c866a7782f5a data/northstar/recipe/mixing/hydrocarbon_from_carbon.json
+ed87feac4d5dc48db6d938fdbcc46b51c57de641 data/northstar/recipe/mixing/hydrocarbon_from_sodium.json
+28c9d02fc96f5e1b184c3c883691dbd98f43c06f data/northstar/recipe/mixing/potion_healing_3.json
+ab34afb6c9ad68787ca205ff9aa365897795c731 data/northstar/recipe/mixing/potion_regeneration_3.json
+48bcd89dc4daa567e5f72b38116dfa9590fee94e data/northstar/recipe/mixing/potion_strength_3.json
+b954dcc3cfa32a284e08487d3d334109ff0f2969 data/northstar/recipe/mixing/strawberry_ice_cream.json
+f857e3bc9fab161e2d926087e00c276ee4f3364a data/northstar/recipe/mixing/titanium1.json
+0bc9c8d8c62f277c4cc3a1325648299a64992446 data/northstar/recipe/mixing/titanium2.json
+fa046288a74330e67d52476942c3fa0b1671bbde data/northstar/recipe/mixing/water_from_snow.json

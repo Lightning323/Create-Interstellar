@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "northstar:titanium_plating"
+  },
+  "result": {
+    "count": 1,
+    "id": "northstar:titanium_plating_stairs"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:jupiter",
+  "class": "moon",
+  "diameter": 5268.2,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 7.155,
+    "inclination_deg": 3.307,
+    "radius": 0.0071551820557
+  },
+  "renderer": "northstar:solar_system/jupiter/ganymede_sky",
+  "required_science": -1.0,
+  "rotation_period_days": -7.155
+}

@@ -1,0 +1,23 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "create:andesite_alloy"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    }
+  },
+  "pattern": [
+    "A   A",
+    "AIIIA",
+    "A   A"
+  ],
+  "result": {
+    "count": 2,
+    "id": "northstar:computer_rack"
+  },
+  "show_notification": false
+}

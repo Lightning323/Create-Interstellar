@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:mars",
+  "class": "moon",
+  "diameter": 12.4,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 1.262,
+    "inclination_deg": 26.12,
+    "radius": 1.56807045E-4
+  },
+  "renderer": "northstar:solar_system/mars/deimos_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 1.263
+}

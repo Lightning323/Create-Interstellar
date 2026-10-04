@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "northstar:item/unfinished_advanced_circuit"
+  }
+}

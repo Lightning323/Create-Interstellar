@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "northstar:titanium_plating_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_titanium_plating": {
+      "conditions": {
+        "items": [
+          {
+            "items": "northstar:titanium_plating"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_titanium_plating"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "northstar:titanium_plating_slab"
+    ]
+  }
+}

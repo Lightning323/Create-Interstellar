@@ -1,0 +1,14 @@
+{
+  "central_body": "northstar:saturn",
+  "class": "moon",
+  "diameter": 5149.5,
+  "orbit": {
+    "type": "northstar:simple",
+    "duration_days": 15.948,
+    "inclination_deg": 27.079,
+    "radius": 0.008167696467
+  },
+  "renderer": "northstar:solar_system/saturn/titan_sky",
+  "required_science": -1.0,
+  "rotation_period_days": 15.94
+}
