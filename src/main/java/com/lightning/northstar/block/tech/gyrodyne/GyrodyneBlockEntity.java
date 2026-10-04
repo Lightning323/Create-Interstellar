@@ -67,7 +67,8 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
      */
     private static final double TILT_SYNC_THRESHOLD = 1d;
 
-    public final ScrollValueBehaviour modeSelector;
+    @Nullable
+    public ScrollValueBehaviour modeSelector;
 
     /**
      * Attitude captured when {@link GyrodyneMode#HOLD} was selected. Null whenever
@@ -81,6 +82,10 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
 
     public GyrodyneBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+    }
+
+    @Override
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         modeSelector = new ScrollValueBehaviour(
                 Component.translatable("northstar.gui.gyrodyne.mode"),
                 this,
@@ -91,22 +96,22 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
         modeSelector.between(0, GyrodyneMode.values().length - 1);
         modeSelector.withFormatter(index -> GyrodyneMode.byIndex(index).getComponent().getString());
         modeSelector.setValue(GyrodyneMode.OFF.ordinal());
-    }
-
-    @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         behaviours.add(modeSelector);
     }
 
     public GyrodyneMode getMode() {
-        return GyrodyneMode.byIndex(Math.round(modeSelector.getValue()));
+        return modeSelector == null
+                ? GyrodyneMode.OFF
+                : GyrodyneMode.byIndex(Math.round(modeSelector.getValue()));
     }
 
     public void setMode(GyrodyneMode mode) {
         if (getMode() == mode) {
             return;
         }
-        modeSelector.setValue(mode.ordinal());
+        if (modeSelector != null) {
+            modeSelector.setValue(mode.ordinal());
+        }
         // Dropping the snapshot is what makes HOLD re-capture: selecting HOLD records
         // the attitude on the tick it starts, and switching away then back re-levels.
         holdOrientation = null;
@@ -159,8 +164,6 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
         }
         if (getMode() != GyrodyneMode.HOLD) {
             holdOrientation = null;
-            tiltXDegrees = 0d;
-            tiltZDegrees = 0d;
         }
     }
 
@@ -180,7 +183,7 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
                             .mul(RocketShipState.SLEW_RATE);
                     frame.orientation().transform(desiredRate);
                     GyrodyneControl.Attitude attitude = new GyrodyneControl.Attitude(
-                            frame.orientation(), GyrodyneControl.mountOrientation(getFacing()),
+                            frame.orientation(), worldMountOrientation(frame),
                             frame.body().getAngularVelocity());
                     GyrodyneControl.Gains gains = new GyrodyneControl.Gains(
                             NorthstarConfigs.server().gyrodyneProportionalGain.get(),
@@ -193,7 +196,9 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
                     response = solve(frame, mode, deltaTime);
                 }
                 if (response.isFiring()) {
-                    frame.body().applyAngularImpulse(response.angularImpulseWorld());
+                    Vector3d localImpulse = new Vector3d(response.angularImpulseWorld());
+                    frame.orientation().transformInverse(localImpulse);
+                    frame.body().applyAngularImpulse(localImpulse);
                 }
             }
         }
@@ -224,7 +229,7 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
                                            GyrodyneMode mode, double deltaTime) {
         GyrodyneControl.Attitude attitude = new GyrodyneControl.Attitude(
                 frame.orientation(),
-                GyrodyneControl.mountOrientation(getFacing()),
+                worldMountOrientation(frame),
                 frame.body().getAngularVelocity());
 
         GyrodyneControl.Gains gains = new GyrodyneControl.Gains(
@@ -252,6 +257,10 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
             holdOrientation = new Quaterniond(attitude.vesselOrientation());
         }
         return GyrodyneControl.holdOrientation(attitude, holdOrientation, deltaTime, gains, capacity);
+    }
+
+    private Quaterniond worldMountOrientation(NorthstarSable.VesselFrame frame) {
+        return new Quaterniond(frame.orientation()).mul(GyrodyneControl.mountOrientation(getFacing()));
     }
 
     /**
@@ -380,7 +389,7 @@ public class GyrodyneBlockEntity extends SmartBlockEntity
     @Override
     protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.read(tag, registries, clientPacket);
-        if (tag.contains("Mode")) {
+        if (tag.contains("Mode") && modeSelector != null) {
             modeSelector.setValue(GyrodyneMode.byIndex(tag.getInt("Mode")).ordinal());
         }
         tiltXDegrees = tag.getDouble("TiltX");

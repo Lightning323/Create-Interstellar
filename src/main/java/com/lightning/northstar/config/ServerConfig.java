@@ -30,7 +30,7 @@ public class ServerConfig extends ConfigBase {
     public final ConfigFloat rocketExplosionFraction = f(0.005f, 0, 1, "explosionFraction", "The fraction of blocks to explode when a rocket crash lands. Set to zero to disable.");
     public final ConfigInt rocketExplosionSize = i(8, 1, "explosionSize", "The size of individual explosions when a rocket crash lands.");
 
-    public final ConfigGroup attitudeControl = group(3, "attitudeControl", "Reaction wheel tuning, for gyrodyne blocks inside rockets");
+    public final ConfigGroup attitudeControl = group(2, "attitudeControl", "Reaction wheel tuning, for gyrodyne blocks inside rockets");
 
     public final ConfigFloat gyrodyneTorque = f(2000, 0, "gyrodyneTorque", "Torque one gyrodyne produces at the reference vessel mass, in Newton-metres. Scales with the square root of vessel mass.");
     public final ConfigFloat gyrodyneProportionalGain = f(4000, 0, "gyrodyneProportionalGain", "Torque per radian of attitude error, in Newton-metres per radian. Higher corrects faster but oscillates more.");

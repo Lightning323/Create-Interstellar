@@ -1,39 +1,76 @@
 {
   "variants": {
-    "bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single"
-    },
-    "bottom=true,top=false": {
-      "model": "northstar:block/rocket_thruster/top"
-    },
-    "bottom=true,top=true": {
-      "model": "northstar:block/rocket_thruster/middle"
-    },
-    "bottom=false,top=true": {
-      "model": "northstar:block/rocket_thruster/bottom"
-    },
-    "facing=down": {
-      "model": "northstar:block/rocket_thruster/single"
-    },
-    "facing=up,bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single",
-      "x": 180
-    },
-    "facing=north,bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single",
-      "x": 90
-    },
-    "facing=south,bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single",
-      "x": 270
-    },
-    "facing=west,bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single",
-      "y": 90
-    },
-    "facing=east,bottom=false,top=false": {
-      "model": "northstar:block/rocket_thruster/single",
-      "y": 270
-    }
+    "facing=down,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single"},
+    "facing=down,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single"},
+    "facing=down,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single"},
+    "facing=down,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom"},
+    "facing=down,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom"},
+    "facing=down,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom"},
+    "facing=down,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top"},
+    "facing=down,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top"},
+    "facing=down,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top"},
+    "facing=down,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle"},
+    "facing=down,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle"},
+    "facing=down,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle"},
+    "facing=up,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single","x":180},
+    "facing=up,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single","x":180},
+    "facing=up,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single","x":180},
+    "facing=up,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom","x":180},
+    "facing=up,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom","x":180},
+    "facing=up,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom","x":180},
+    "facing=up,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top","x":180},
+    "facing=up,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top","x":180},
+    "facing=up,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top","x":180},
+    "facing=up,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle","x":180},
+    "facing=up,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle","x":180},
+    "facing=up,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle","x":180},
+    "facing=north,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single","x":90},
+    "facing=north,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single","x":90},
+    "facing=north,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single","x":90},
+    "facing=north,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom","x":90},
+    "facing=north,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom","x":90},
+    "facing=north,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom","x":90},
+    "facing=north,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top","x":90},
+    "facing=north,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top","x":90},
+    "facing=north,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top","x":90},
+    "facing=north,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle","x":90},
+    "facing=north,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle","x":90},
+    "facing=north,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle","x":90},
+    "facing=south,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single","x":270},
+    "facing=south,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single","x":270},
+    "facing=south,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single","x":270},
+    "facing=south,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom","x":270},
+    "facing=south,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom","x":270},
+    "facing=south,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom","x":270},
+    "facing=south,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top","x":270},
+    "facing=south,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top","x":270},
+    "facing=south,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top","x":270},
+    "facing=south,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle","x":270},
+    "facing=south,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle","x":270},
+    "facing=south,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle","x":270},
+    "facing=east,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single","x":90,"y":90},
+    "facing=east,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single","x":90,"y":90},
+    "facing=east,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single","x":90,"y":90},
+    "facing=east,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":90},
+    "facing=east,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":90},
+    "facing=east,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":90},
+    "facing=east,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top","x":90,"y":90},
+    "facing=east,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top","x":90,"y":90},
+    "facing=east,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top","x":90,"y":90},
+    "facing=east,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":90},
+    "facing=east,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":90},
+    "facing=east,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":90},
+    "facing=west,bottom=false,top=false,tier=1": {"model":"northstar:block/rocket_thruster/single","x":90,"y":270},
+    "facing=west,bottom=false,top=false,tier=2": {"model":"northstar:block/rocket_thruster/single","x":90,"y":270},
+    "facing=west,bottom=false,top=false,tier=3": {"model":"northstar:block/rocket_thruster/single","x":90,"y":270},
+    "facing=west,bottom=false,top=true,tier=1": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":270},
+    "facing=west,bottom=false,top=true,tier=2": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":270},
+    "facing=west,bottom=false,top=true,tier=3": {"model":"northstar:block/rocket_thruster/bottom","x":90,"y":270},
+    "facing=west,bottom=true,top=false,tier=1": {"model":"northstar:block/rocket_thruster/top","x":90,"y":270},
+    "facing=west,bottom=true,top=false,tier=2": {"model":"northstar:block/rocket_thruster/top","x":90,"y":270},
+    "facing=west,bottom=true,top=false,tier=3": {"model":"northstar:block/rocket_thruster/top","x":90,"y":270},
+    "facing=west,bottom=true,top=true,tier=1": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":270},
+    "facing=west,bottom=true,top=true,tier=2": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":270},
+    "facing=west,bottom=true,top=true,tier=3": {"model":"northstar:block/rocket_thruster/middle","x":90,"y":270}
   }
 }

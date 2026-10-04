@@ -27,10 +27,9 @@ public final class RocketFuelStore {
         if (amount <= 0) return true;
 
         Map<BlockPos, FluidTankBlockEntity> tanks = collectCreateTanks(subLevel);
-        int available = tanks.values().stream()
-                .mapToInt(tank -> validFuel(tank.getTankInventory().getFluid())
-                        ? tank.getTankInventory().getFluidAmount() : 0)
-                .sum();
+        Map<BlockPos, RocketThrusterBlockEntity> thrusters = collectThrusters(subLevel);
+        int available = tanks.values().stream().mapToInt(tank -> fuelAmount(tank.getTankInventory().getFluid())).sum()
+                + thrusters.values().stream().mapToInt(thruster -> fuelAmount(thruster.getFuelTank().getFluid())).sum();
         if (available < amount) return false;
 
         int remaining = amount;
@@ -42,7 +41,15 @@ public final class RocketFuelStore {
             remaining -= drained;
             if (remaining == 0) return true;
         }
-        return false;
+        for (RocketThrusterBlockEntity thruster : thrusters.values()) {
+            FluidStack fluid = thruster.getFuelTank().getFluid();
+            if (!validFuel(fluid)) continue;
+            int drained = Math.min(remaining, fluid.getAmount());
+            thruster.getFuelTank().drain(drained, IFluidHandler.FluidAction.EXECUTE);
+            remaining -= drained;
+            if (remaining == 0) return true;
+        }
+        return remaining == 0;
     }
 
     /** Fraction of installed fuel capacity currently holding supported propellant. */
@@ -54,14 +61,9 @@ public final class RocketFuelStore {
             FluidStack fluid = tank.getTankInventory().getFluid();
             if (validFuel(fluid)) amount += fluid.getAmount();
         }
-        for (var holder : subLevel.getPlot().getLoadedChunks()) {
-            for (BlockEntity blockEntity : holder.getChunk().getBlockEntities().values()) {
-                if (blockEntity instanceof RocketThrusterBlockEntity thruster) {
-                    capacity += thruster.getFuelTank().getCapacity();
-                    FluidStack fluid = thruster.getFuelTank().getFluid();
-                    if (validFuel(fluid)) amount += fluid.getAmount();
-                }
-            }
+        for (RocketThrusterBlockEntity thruster : collectThrusters(subLevel).values()) {
+            capacity += thruster.getFuelTank().getCapacity();
+            amount += fuelAmount(thruster.getFuelTank().getFluid());
         }
         return capacity == 0 ? 0f : (float) amount / capacity;
     }
@@ -78,6 +80,22 @@ public final class RocketFuelStore {
             }
         }
         return tanks;
+    }
+
+    private static Map<BlockPos, RocketThrusterBlockEntity> collectThrusters(ServerSubLevel subLevel) {
+        Map<BlockPos, RocketThrusterBlockEntity> thrusters = new LinkedHashMap<>();
+        for (var holder : subLevel.getPlot().getLoadedChunks()) {
+            for (BlockEntity blockEntity : holder.getChunk().getBlockEntities().values()) {
+                if (blockEntity instanceof RocketThrusterBlockEntity thruster) {
+                    thrusters.putIfAbsent(thruster.getBlockPos().immutable(), thruster);
+                }
+            }
+        }
+        return thrusters;
+    }
+
+    private static int fuelAmount(FluidStack fluid) {
+        return validFuel(fluid) ? fluid.getAmount() : 0;
     }
 
     private static boolean validFuel(FluidStack fluid) {

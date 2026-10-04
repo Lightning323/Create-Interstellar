@@ -124,13 +124,6 @@ public class RocketThrusterBlockEntity extends SmartBlockEntity implements Block
             return;
         }
 
-        if (fuel.getFluid().isEmpty()) {
-            RocketSublevelState.get(subLevel).setThrottle(0f);
-            RocketSublevelState.save(subLevel);
-            fractionalPropellantMb = 0f;
-            return;
-        }
-
         if (subLevel.getMassTracker() == null || subLevel.getMassTracker().getMass() <= 0d) {
             // Without a mass tracker there is nothing to push against, so burning
             // propellant would be theft. Cut the throttle so the failure is visible.
