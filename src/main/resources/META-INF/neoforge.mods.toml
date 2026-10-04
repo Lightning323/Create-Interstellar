@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[0,)"
-license = "MIT"
+license = "GNU GPL v3"
 issueTrackerURL = "https://github.com/Astronauts-of-Create/Northstar-Redux/issues"
 
 
@@ -12,7 +12,7 @@ version = "${file.jarVersion}"
 displayName = "Northstar Redux"
 displayURL = "https://modrinth.com/project/northstar-redux"
 logoFile = "logo.png"
-credits = "Original mod by lightning2401."
+credits = "Original mod by lightning2401. Physics/propulsion systems adapted from Create: Cosmonautics by webyep-art and M_W_K. See CREDIT.txt."
 authors = "Redstonneur1256, lightning2401"
 description = '''
 Inspired by Micdoodle's Galacticraft, Northstar seeks to return players to the stars with the power of the Create mod. 
@@ -51,14 +51,14 @@ side = "BOTH"
 
 [[dependencies.northstar]]
 modId = "sable"
-type = "optional"
+type = "required"
 versionRange = "[2.0.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.northstar]]
 modId = "sablecompanion"
-type = "optional"
+type = "required"
 versionRange = "[1.6.0,)"
 ordering = "AFTER"
 side = "BOTH"

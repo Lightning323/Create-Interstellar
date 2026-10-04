@@ -54,6 +54,34 @@ sourceSets {
     }
 }
 
+// ModDevGradle turns the default `test` task into a NeoForge game launch, so plain
+// JUnit tests need their own JVM suite. `unitTest` runs them on the normal test
+// runtime without booting Minecraft.
+testing {
+    suites {
+        val unitTest by registering(JvmTestSuite::class) {
+            useJUnitJupiter(libs.versions.junit.get())
+            // ModDevGradle only wires Minecraft and the mod dependencies onto the
+            // main source set, so unit tests that touch mod types (Direction,
+            // Vec3, JOML, SmartBlockEntity, ...) need the main classpath and
+            // output added explicitly.
+            dependencies {
+                implementation(sourceSets.main.get().output)
+                implementation(sourceSets.main.get().compileClasspath)
+                runtimeOnly(sourceSets.main.get().runtimeClasspath)
+            }
+            targets.all {
+                testTask.configure {
+                    shouldRunAfter(tasks.named("test"))
+                    testLogging {
+                        events("passed", "skipped", "failed")
+                    }
+                }
+            }
+        }
+    }
+}
+
 neoForge {
     version = "21.1.230"
 
@@ -183,6 +211,10 @@ dependencies {
 
     "tfmgCeImplementation"(libs.tfmg.ce)
 
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     // Create a folder name "mods-obf" inside "run" and put extra mods needed for testing here
     file("run/mods-obf-1.21.1").listFiles()?.forEach { runtimeOnly("local:${it.nameWithoutExtension}") }
 }
@@ -209,6 +241,10 @@ val generateResources = tasks.register<Sync>("generateResources") {
 
 tasks.named<Jar>("jar") {
     from(generateResources)
+    // main resources already contain src/generated via resources.srcDir above, so
+    // the staged data-run copy overlaps it. Both hold the same content, so take
+    // the first rather than failing the jar on a duplicate entry.
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.jar {

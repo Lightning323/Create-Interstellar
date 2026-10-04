@@ -30,6 +30,7 @@ import com.lightning.northstar.block.tech.oxygen_sealer.OxygenSealerVisual;
 import com.lightning.northstar.block.tech.rocket_controls.RocketControlsBlockEntity;
 import com.lightning.northstar.block.tech.rocket_controls.RocketControlsRenderer;
 import com.lightning.northstar.block.tech.rocket_station.RocketStationBlockEntity;
+import com.lightning.northstar.block.tech.rocket_thruster.RocketThrusterBlockEntity;
 import com.lightning.northstar.block.tech.solar_panel.SolarPanelBlockEntity;
 import com.lightning.northstar.block.tech.solar_panel.SolarPanelRenderer;
 import com.lightning.northstar.block.tech.temperature_regulator.TemperatureRegulatorBlockEntity;
@@ -164,6 +165,11 @@ public class NorthstarBlockEntityTypes {
     public static final BlockEntityEntry<RocketStationBlockEntity> ROCKET_STATION = REGISTRATE
             .blockEntity("rocket_station", RocketStationBlockEntity::new)
             .validBlocks(NorthstarBlocks.ROCKET_STATION)
+            .register();
+
+    public static final BlockEntityEntry<RocketThrusterBlockEntity> ROCKET_THRUSTER = REGISTRATE
+            .blockEntity("rocket_thruster", RocketThrusterBlockEntity::new)
+            .validBlocks(NorthstarBlocks.ROCKET_THRUSTER)
             .register();
 
     public static final BlockEntityEntry<BracketedKineticBlockEntity> BRACKETED_KINETIC = REGISTRATE

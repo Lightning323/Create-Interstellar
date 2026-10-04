@@ -24,6 +24,7 @@ public class ServerConfig extends ConfigBase {
     public final ConfigInt targetingComputersNeeded = i(48, 0, "targetingComputersNeeded", "The amount of targeting computers required to reach maximum efficiency");
     public final ConfigInt launchCountdownRadius = i(20, 0, "launchCountdownRadius", "From how far away should the launch countdown messages/sound be announced to players");
     public final ConfigFloat thrusterPower = f(500, 1, "thrusterPower", "The engine's force in Newtons (kg/m/s^2) assuming rocket weight is in kg");
+    public final ConfigFloat propellantSpecificImpulse = f(1200, 1, "propellantSpecificImpulse", "Propellant energy per newton of thrust, in mB per Newton. Higher values make thrusters more fuel efficient.");
     public final ConfigFloat landingMaxSafeSpeed = f(5, 0, "landingMaxSafeSpeed", "The maximum safe speed in blocks/second the rocket can move at before exploding on landing");
     public final ConfigFloat rocketExplosionFraction = f(0.005f, 0, 1, "explosionFraction", "The fraction of blocks to explode when a rocket crash lands. Set to zero to disable.");
     public final ConfigInt rocketExplosionSize = i(8, 1, "explosionSize", "The size of individual explosions when a rocket crash lands.");

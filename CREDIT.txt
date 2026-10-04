@@ -1,0 +1,185 @@
+================================================================================
+ CREDITS, LICENSING AND ATTRIBUTION
+ Northstar Redux (mod id: northstar)
+================================================================================
+
+This file records the provenance of Northstar Redux, the licensing history of
+this repository, and the third-party projects whose work is used, adapted or
+depended upon. It is a legal notice, not a changelog.
+
+--------------------------------------------------------------------------------
+ 1. LICENSING HISTORY OF THIS PROJECT (READ THIS FIRST)
+--------------------------------------------------------------------------------
+
+Northstar Redux was distributed under the MIT License until 2026-10-03.
+
+  Copyright (c) 2024  lightning2401
+  Copyright (c) 2025-2026  Redstonneur1256
+
+Effective 2026-10-03, this project is licensed under the GNU General Public
+License, version 3 (GPL-3.0). The full license text is in LICENSE.md.
+
+  Why: Northstar Redux incorporates physics and propulsion work adapted from
+  Create: Cosmonautics (GPL-3.0). GPL-3.0 is one-way compatible: MIT-licensed
+  code may be combined into a GPL-3.0 work, but GPL-3.0 code may NOT be
+  incorporated into an MIT-licensed work. Adapting Cosmonautics therefore
+  obliges this project as a whole to be distributed under GPL-3.0.
+
+  The MIT license is one-way compatible INTO GPL-3.0, so all pre-existing MIT
+  code remains valid and its copyright notices are retained above. No
+  attribution rights have been waived.
+
+REQUIRED ACTION BEFORE DISTRIBUTION
+  Relicensing requires the consent of every copyright holder. As of this
+  commit, consent has been recorded for the fork's own authors. Portions
+  inherited from the upstream project "Northstar Redux"
+  (https://github.com/Astronauts-of-Create/Northstar-Redux) remain the property
+  of the upstream authors and require their explicit permission. Obtain and
+  record that permission before publishing a build containing this work.
+  GPL-3.0 section 5(a) additionally requires prominent notices stating that the
+  work is licensed under GPL-3.0 and that it may not be relicensed.
+
+--------------------------------------------------------------------------------
+ 2. THIS PROJECT
+--------------------------------------------------------------------------------
+
+  Northstar Redux
+  Mod id:   northstar
+  Upstream: https://github.com/Astronauts-of-Create/Northstar-Redux
+  Fork:     https://github.com/Lightning323/Create-Interstellar
+
+  Authors:
+    lightning2401        - original mod author
+    Redstonneur1256       - fork author and current maintainer
+
+  Inspired by:
+    Micdoodle's Galacticraft (https://github.com/Micdoodle/micdoodle)
+
+  Built on:
+    Create               (https://github.com/CreateMod/Create), MIT
+    NeoForge             (https://github.com/neoforged/NeoForge), LGPL-3.0 / GPL-3.0
+    Flywheel              (https://github.com/CreateMod/Flywheel), LGPL-3.0
+    Ponder                (https://github.com/CreateMod/Ponder), LGPL-3.0
+    Registrate             (https://github.com/CreateMod/Registrate), LGPL-3.0
+    GeckoLib              (https://github.com/bernie-g/geckolib), LGPL-3.0
+    JOML                  (https://github.com/JOML/JOML), MIT / BSD-2-Clause
+    Mixin / MixinExtras   (https://github.com/SpongePowered/Mixin), MIT
+    Architectury / Architectury API (https://github.com/architectury), LGPL-3.0
+
+--------------------------------------------------------------------------------
+ 3. ADAPTED WORK
+--------------------------------------------------------------------------------
+
+  Create: Cosmonautics
+  https://github.com/CosmonauticsTeam/Create-Cosmonautics
+
+    Authors:        webyep-art, M_W_K
+    Organization:   CosmonauticsTeam
+    Mod id:         rocketnautics ("Create: Cosmonautics")
+    Also ships:     dimensional_sable ("Dimensional Sable")
+    License:        GNU General Public License, version 3
+    Version used:   see gradle.properties / build metadata of that project
+
+  WHAT WAS ADAPTED
+    The spaceship physics and rocket propulsion design adopted by Northstar
+    Redux is derived from Create: Cosmonautics, specifically:
+
+      - Rigid-body spaceship movement replacing purely kinematic, vertically
+        constrained contraption movement.
+      - Simulated thrust modelling: per-thruster force application, continuous
+        fuel/propellant consumption during burn, and thrust-vector resolution
+        from thruster placement and vessel orientation.
+      - Mass and centre-of-mass accounting for assembled vessels.
+      - Sublevel ("ship") assembly, pose and transform handling.
+      - The corresponding Ponder scenes, tooltip wording and guidebook text
+        describing the above.
+
+  The corresponding source files of Create: Cosmonautics are distributed under
+  GPL-3.0. As required by GPL-3.0 sections 4 and 5, the complete corresponding
+  source of this project is available under the same license, and every
+  retained copyright notice from Create: Cosmonautics must be preserved in the
+  individual files to which it applies.
+
+  ASSETS
+    No textures, models, sounds, music or other binary media were copied from
+    Create: Cosmonautics. Art assets in this project remain the work of
+    Northstar's own authors.
+
+  NOTE ON UPSTREAM AI POLICY
+    Create: Cosmonautics maintains an AI usage policy
+    (AI_POLICY.md in that repository) requiring disclosure of AI-assisted
+    contributions and prohibiting unreviewed machine-generated code. Work
+    derived from that project should be reviewed by a human who understands it
+    in full before it is merged, and any AI assistance must be disclosed in the
+    pull request.
+
+--------------------------------------------------------------------------------
+ 4. RUNTIME DEPENDENCIES (NOT BUNDLED, SEPARATELY DISTRIBUTED)
+--------------------------------------------------------------------------------
+
+  These are required at runtime and are NOT redistributed as part of
+  Northstar Redux. Each remains under its own license. Northstar Redux being
+  GPL-3.0 does not grant you rights over any of them.
+
+  Sable
+    https://github.com/RyanHCode/Sable  (dev.ryanhcode.sable)
+    Authors:      RyanHCode
+    Mod id:       sable
+    License:      PolyForm Shield License 1.0.0
+    Version:      2.0.3
+    Notice:       PolyForm Shield 1.0.0 is a source-available license, NOT an
+                  OSI-approved open source license. It permits use, modification
+                  and redistribution, but prohibits using the software to build
+                  a product that competes with it. Review the full license text
+                  before redistributing or depending on it commercially. Northstar
+                  Redux does not bundle Sable; users obtain it separately.
+
+  Sable Companion
+    (dev.ryanhcode.sable-companion, mod id: sablecompanion)
+    Authors:      RyanHCode, Ocelot
+    License:      MIT
+    Copyright (c) 2026 RyanHCode
+    Version:      1.6.0
+    Note:         Provided as jar-in-jar by Sable itself.
+
+  Sable Physics Backend (sable_rapier)
+    Wraps the Rapier rigid-body solver (https://rapier.rs, Apache-2.0).
+    Version:      2.0.3
+    Note:         Provided as jar-in-jar by Sable itself.
+
+  Veil
+    (foundry.veil:veil-neoforge) - rendering utilities used by Sable.
+    Note:         Provided as jar-in-jar by Sable itself.
+
+  Sable itself additionally requires Create, Flywheel, Sodium and optionally
+  ScalableLux and LittleTiles. See the Sable distribution for its own terms.
+
+--------------------------------------------------------------------------------
+ 5. OPTIONAL COMPATIBILITY MODS
+--------------------------------------------------------------------------------
+
+  Present as optional integrations, not required dependencies. No code from
+  these projects is included; Northstar only calls their public APIs or applies
+  opt-in mixins.
+
+    Create: Aeronautics   (https://modrinth.com/mod/create-aeronautics)
+    Create: Diesel Generators
+    Create: TFMG / TFMG Community Edition
+    Create: Ore Excavation / Create: Copper and Tin
+    Sable Companion
+    Simulated / Offroad
+
+--------------------------------------------------------------------------------
+ 6. HOW TO SATISFY GPL-3.0 WHEN REDISTRIBUTING
+--------------------------------------------------------------------------------
+
+  - Ship this file (CREDIT.txt) and LICENSE.md with any distribution.
+  - State prominently that Northstar Redux is licensed under GPL-3.0 and may
+    not be relicensed (GPL-3.0 section 5(a)).
+  - Provide complete corresponding source code, or a written offer to supply
+    it, for the build you distribute (GPL-3.0 section 6).
+  - Do not add further restrictions on the covered code (GPL-3.0 section 7).
+  - Do not imply that Sable or any other dependency is covered by this
+    project's GPL-3.0 grant.
+
+================================================================================

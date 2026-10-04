@@ -11,6 +11,29 @@
     },
     "bottom=false,top=true": {
       "model": "northstar:block/rocket_thruster/bottom"
+    },
+    "facing=down": {
+      "model": "northstar:block/rocket_thruster/single"
+    },
+    "facing=up,bottom=false,top=false": {
+      "model": "northstar:block/rocket_thruster/single",
+      "x": 180
+    },
+    "facing=north,bottom=false,top=false": {
+      "model": "northstar:block/rocket_thruster/single",
+      "x": 90
+    },
+    "facing=south,bottom=false,top=false": {
+      "model": "northstar:block/rocket_thruster/single",
+      "x": 270
+    },
+    "facing=west,bottom=false,top=false": {
+      "model": "northstar:block/rocket_thruster/single",
+      "y": 90
+    },
+    "facing=east,bottom=false,top=false": {
+      "model": "northstar:block/rocket_thruster/single",
+      "y": 270
     }
   }
 }
