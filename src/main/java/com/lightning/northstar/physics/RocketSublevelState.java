@@ -1,8 +1,10 @@
 package com.lightning.northstar.physics;
 
 import com.lightning.northstar.contraption.rocket.RocketDestination;
+import dev.ryanhcode.sable.companion.SableCompanion;
 import dev.ryanhcode.sable.sublevel.ServerSubLevel;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 
 import java.util.Collections;
 import java.util.Map;
@@ -60,6 +62,29 @@ public final class RocketSublevelState {
         CompoundTag root = subLevel.getUserDataTag();
         return root != null && root.contains(DATA_KEY, CompoundTag.TAG_COMPOUND);
     }
+
+    /**
+     * Whether an entity is aboard a vessel, whether it sits in the plot itself or is riding
+     * something that does.
+     *
+     * <p>This is what decides whether an entity may be moved between dimensions by itself.
+     * A vessel is transferred as a whole, so any of its occupants must be left alone: pulled
+     * out individually, a pilot ends up in orbit standing in a ship that is still climbing
+     * in the overworld.
+     */
+    public static boolean isAboardRocket(Entity entity) {
+        Entity current = entity;
+        for (int depth = 0; current != null && depth < MAX_VEHICLE_DEPTH; depth++) {
+            if (SableCompanion.INSTANCE.getContaining(current) instanceof ServerSubLevel subLevel && isRocket(subLevel)) {
+                return true;
+            }
+            current = current.getVehicle();
+        }
+        return false;
+    }
+
+    /** Guards against a malformed riding cycle while walking the vehicle chain. */
+    private static final int MAX_VEHICLE_DEPTH = 16;
 
     public static void forget(ServerSubLevel subLevel) {
         CACHE.remove(subLevel);

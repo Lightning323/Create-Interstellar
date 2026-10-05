@@ -5,6 +5,7 @@ import com.lightning.northstar.config.NorthstarConfigs;
 import com.lightning.northstar.compat.sable.NorthstarSable;
 import com.lightning.northstar.content.NorthstarTags.NorthstarEntityTags;
 import com.lightning.northstar.planet.data.PlanetDimension;
+import com.lightning.northstar.physics.RocketSublevelState;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -105,6 +106,15 @@ public abstract class EntityGravityMixin implements NorthstarEntity {
         if (!(level instanceof ServerLevel level) ||
             !NorthstarConfigs.server().allowDimensionTraversal.get() ||
             NorthstarSable.isInsideSubLevel(self) ||
+            // Riding anything means this entity's dimension belongs to whatever it is riding.
+            // Changing dimension here would drag the rider out of a seat and leave the vehicle
+            // behind, which is exactly how a pilot ends up in orbit standing in an empty sky
+            // beside a rocket that is still climbing in the overworld.
+            self.isPassenger() ||
+            // A vessel crosses dimensions as a whole plot, hull and crew together, driven by
+            // RocketFlightEvents. Asking "is this entity aboard a rocket" also covers the
+            // loose entities of a hull, such as Create seats, which ride nothing themselves.
+            RocketSublevelState.isAboardRocket(self) ||
             NorthstarEntityTags.IGNORE_WORLD_BOUNDS_TELEPORT.matches(self) ||
             self instanceof ServerPlayer sp && sp.connection == null) {
             return;

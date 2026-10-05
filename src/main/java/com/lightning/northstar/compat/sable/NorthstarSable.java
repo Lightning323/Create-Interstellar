@@ -76,6 +76,12 @@ public final class NorthstarSable {
         return SableCompanion.INSTANCE.getContaining(level, pos);
     }
 
+    /** The sub-level an entity is riding in, or null if it is in the world proper. */
+    @Nullable
+    public static SubLevelAccess containing(Entity entity) {
+        return SableCompanion.INSTANCE.getContaining(entity);
+    }
+
     /**
      * Drops the cached handle for a sublevel. Called when a vessel is removed, so a
      * long session does not accumulate entries for hulls that are gone.
